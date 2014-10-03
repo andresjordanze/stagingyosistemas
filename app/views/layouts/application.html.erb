@@ -38,39 +38,22 @@
   </script>
 </head>
 <body>
+    <%= render 'layouts/navigation' %>
+
+ <!-- 
 <input type="hidden" id="current_user" value="<%=current_user.nil? ? 0 : current_user.id%>">
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=522116067832259";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<br><br><br>
-  <div class="row" >  
-    <div>
+-->
       <% flash.each do |name, msg| %>
         <div class="alert alert-info alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         </div>
       <% end %>
-    </div>
-  </div>
- <!-- <div class="row" >
-    <a class="navbar-brand" href="/"><img src="/assets/logo.png" /></a>
-  </div>-->
-  <div class="row">
-    <%= render 'layouts/navigation' %>
-    <br><br><br>
-  </div>
   <!-- Cuerpo de la pagina -->
-  <div class="row">
-    <!--Espacio Vacio del Lateral izquierdo.-->
 		<div id="main" class="col-sm-9 col-md-9 col-lg-9">
       <%= yield %> 
     </div>
+
     <!--    <% if !current_user.nil?%>
     <div class="col-sm-2 col-md-2 col-lg-2 hidden-phone">
         <div class="panel panel-default" style="height:69%; width:16.7%; position:fixed; top:25%; right:0px; background-color:white;">
@@ -113,15 +96,7 @@
                     </span>
                   </div>
         </div>-->
-    </div>
-
-    <div id="notificacion_panel">
-      
-    </div>
-
-      <!-- Pie de Pagina -->
-	
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
     obtener_conectados();
     </script>
     <script type="text/javascript">
@@ -149,16 +124,12 @@
                   
         });
       }
-    </script>
-    <script>
+    </script>-->
 
-       
-         
-      
-    </script>
-		
+  <!-- Footer de la pagina -->
+	<div class="row">
+    <%= render 'layouts/bootom_bar' %>
+  </div>	
 </body>
-	 <div class="row">
-	         <%= render 'layouts/bootom_bar' %>
-	       </div>
+	 
 </html>
