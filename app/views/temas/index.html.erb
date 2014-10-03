@@ -1,0 +1,68 @@
+<%= render :layout => 'layouts/groups_layout' do%>
+<div class="page-header">
+     <h1 id="forms">Lista de Temas</h1>
+</div>
+<form method="GET" action="/temas/buscar/<%=@grupo.id%>">
+<div class="row" style="margin-bottom:50px;">
+  <%if current_user!=nil%>
+    <div class="col-sm-3 col-md-3 col-lg-3"  style="padding-right: 50px; margin-right:-50px;">
+      <a class="btn btn-primary btn-lg" onclick="throwFade()" href="/temas/new/<%=@grupo.id%>"><span class="icon-list icon-white" style="vertical-align:-1px;  margin-right:7px; "></span>Nuevo Tema</a>
+    </div>
+  <%end%>
+</div>
+</form>
+<br>
+<div class="row">
+  <div class="col-sm-7 col-md-7 col-lg-7"></div>
+  <div class="col-sm-3 col-md-3 col-lg-3 pull-right" style="margin-right:13.33333333%;" >
+    <%if @temas.size != 0%>
+       <% @var = "titulo" %>
+       <!--% @var2 = "detalle" %-->
+       <% @var2 = "fecha" %>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default">Ordenar por:</button>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li><%=link_to "Titulo", ordertable_path(@ides,@grupo.id,@var)%></li>
+              <!--li><%=link_to "Detalle", ordertable_path(@ides,@grupo.id,@var2)%></li-->
+              <li><%=link_to "Fecha", ordertable_path(@ides,@grupo.id,@var2)%></li>
+            </ul>
+        </div>
+    <%end%>
+  </div>
+</div>
+<br />
+<div class="row">
+<div class="col-lg-10">
+    <% @temas.each do |tema| %>
+    <div class="panel panel-default" style='cursor:pointer' onclick=<%="document.location.href='/temas/"+tema.id.to_s+"'"%>>
+      <div class="panel-heading" title="Titulo">
+        <h3 style="margin-top:0px; margin-bottom:0px;"><%= tema.titulo %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <img title="Tema" src="/assets/tema.png" class="square-color-tema visible-phone" width="32" />
+            <img title="Tema" src="/assets/tema.png" class="square-color-tema hidden-phone" />&nbsp;
+          </div>
+          <div class="col-sm-9 col-md-9 col-lg-9" title="Detalle">
+            <span><%= tema.cuerpo[0,315]+(tema.cuerpo.length>315 ? "..." : "")  %></span>
+          </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-6 col-md-6 col-lg-6" title="Titulo">
+              <small style="color: gray;">Tema creado el <%= tema.created_at.localtime.strftime("%d/%m/%Y a las: %I:%M  %p") %><br/>
+                Usuario <a href="/usuarios/<%=tema.usuario_id%>"><%= tema.usuario.nombre %></a> </small>
+
+            </div>
+         </div>
+      </div>
+    </div>
+    <%end%>
+  <center><%= paginate @temas %></center>
+</div>
+</div>
+<%end%>
+<script type="text/javascript">
+   $(".square-color-tema").css("background-color",get_random_color());
+</script>

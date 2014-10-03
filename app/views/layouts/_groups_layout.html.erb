@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+  function throwFade() {
+    $('#principal').css('left','-150px');
+    $('#principal').css('opacity','0.0');
+  }
+</script>
+<script type="text/javascript">
+  function throwShow() {
+    $('#principal').addClass('in-left');
+    $('#principal').css('left','0x');
+    $('#principal').css('opacity','1.0');
+  }
+</script>
+</head>
+<body>
+  <div class= "barraizquierdafijo">
+  <div class='row'>
+  <div class="col-lg-4" style="width: 28%;">
+    <div class="page-header"style="position:fixed; top:15%; left:20px;">
+      <div class="row" >
+        <div class="col-lg-4">
+          <h1 style="margin-top:0px;" id="forms">Grupos</h1>          
+          <form method="GET" action="/grupos/buscar">
+          <div style="display: inline-block; margin-top:4%;" onmouseover="showSearch();" onmouseout="hideSearch();">
+            <input id="buscarGrupo" name="nombre" placeholder="Buscar..." class="form-control input-sm"  style="width:0px;float:left;border-width:0px;padding:0;" type="text"/>
+            <% image_submit_tag("search.png", :class => 'search-button', :alt =>
+                                'Texto alternativo')%>
+              <input  src="/assets/search.png" type="image" width="30" style="cursor:pointer;float:left;">           
+          </div>
+        </div>
+        </form>
+      </div>      
+    </div>
+    <div class="bs-example" style="overflow:auto; height:150px; width:200px; position:fixed; top:38%; left:20px;">
+              <%if  current_user!=nil%>
+              <h4 background-color="black">Publicos</h4>
+              <ul class="nav nav-pills-public nav-stacked">                  
+                  <% subscripciones_usuario().each do |subs| %>
+                      <%if subs.grupo.id == @grupo.id and subs.grupo.estado==false%>
+                        <li class="active"><a name="currentSelected" href="#"><%= subs.grupo.nombre %></a></li>
+                      <%else%>
+                        <% if subs.grupo.habilitado and subs.grupo.estado==false%>
+                          <li><a name="itemMenu" href="/grupos/<%=subs.grupo.id%>/temas-y-tareas"><%= subs.grupo.nombre %></a></li>
+                        <% end %>    
+                      <% end %>
+                  <% end %>
+              </ul>
+              <h4>Privados</h4>
+              <ul class="nav nav-pills nav-stacked">
+                  <% subscripciones_usuario().each do |subs| %>
+                      <%if subs.grupo.id == @grupo.id and subs.grupo.estado==true%>
+                        <li class="active"><a name="currentSelected" href="#"><%= subs.grupo.nombre %></a></li>
+                      <%else%>
+                        <% if subs.grupo.habilitado and subs.grupo.estado==true%>
+                          <li><a name="itemMenu" href="/grupos/<%=subs.grupo.id%>/temas-y-tareas"><%= subs.grupo.nombre %></a></li>
+                        <% end %>    
+                      <% end %>
+                  <% end %>
+								<%end%>
+              </ul>
+            </div>
+<!--subscription by group key-->
+              <div style="position:fixed; margin-top:300px; left:20px;">
+                <h3>Suscribirse a Grupo</h3>
+                <form method="GET" action="/grupos/buscar_por_llave" >            
+                  <input id="llave" name="llave" placeholder="Llave..." class="form-control input-sm"  style="" type="text"><br>              
+                
+                  <center><input type="submit" value="Suscribirse"  class="btn btn-primary"></center>
+                </form>
+          </div>
+<!--______________________________________________________-->
+  </div>
+
+  <div class="col-lg-8"  style="background-color:white;">
+    <div>
+        <% tab_selec = ((!@temas.nil?||!@tema.nil?) ? 1 : ((!@tareas.nil?||!@tarea.nil?) ? 2 : (!@cuestionarios.nil?||!@cuestionario.nil?) ? 3 : 0))%>
+            <div>
+              <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+              <!--<%if(@grupo.id!=1)%>
+                <li class="<%=tab_selec==0 ? 'active' : ''%>" onclick="<%= (tab_selec!=0) ? "throwFade(); window.location='/grupos/"+@grupo.id.to_s+"/temas-y-tareas'; return false;" : "" %>" ><a href="#temas-y-tareas" data-toggle="tab"><h3 style="margin-top:5px;">Temas y Tareas</h3></a></li>
+              <%end%>
+                <li class="<%=tab_selec==1 ? 'active' : ''%>" onclick="<%= (tab_selec!=1) ? "throwFade(); window.location='/grupos/"+@grupo.id.to_s+"/temas'; return false;" : "" %>" ><a href="#temas" data-toggle="tab"><h3 style="margin-top:5px;">Temas</h3></a></li>
+                <%if(@grupo.id!=1)%>
+                <li class="<%=tab_selec==2 ? 'active' : ''%>" onclick="<%= (tab_selec!=2) ? "throwFade(); window.location='/grupos/"+@grupo.id.to_s+"/tareas'; return false;" : "" %>" ><a href="#tareas" data-toggle="tab"><h3 style="margin-top:5px;">Tareas</h3></a></li>
+
+
+                   <li class="<%=tab_selec==3 ? 'active' : ''%>" onclick="<%= (tab_selec!=3) ? "throwFade(); window.location='/cuestionarios/cuestionarios_de_grupo_index/"+@grupo.id.to_s+"'; return false;" : "" %>" ><a href="#cuestionarios" data-toggle="tab"><h3 style="margin-top:5px;">Cuestionarios</h3></a></li>
+                <%end%>
+                -->
+              </ul>
+              <div class="go-left tab-content" id="principal">
+              <%if tab_selec==0 %>
+                <div class="tab-pane fade active in" id="temas-y-tareas">                
+                    <%=yield%>
+                </div>
+              <%end%>
+              <%if tab_selec==1 %>
+                <div class="tab-pane fade active in" id="temas">                
+                    <%=yield%>
+                </div>
+              <%end%>
+              <%if tab_selec==2 %>
+                <div class="tab-pane fade active in" id="tareas">                
+                    <%=yield%>
+                </div>
+                <%end%>
+                 <%if tab_selec==3 %>
+                <div class="tab-pane fade active in" id="Cuestionarios">                
+                    <%=yield%>
+                </div>
+              <%end%>
+              </div>
+            </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+   $( document ).ready( throwShow );
+</script>
+<script type="text/javascript">
+  var links = document.getElementsByName('itemMenu');
+  for(i=0;i<links.length;i++)
+  {
+    links[i].onclick  = throwFade;
+  }
+  var active = document.getElementsByName('currentSelected')[0];
+</script>
+</body>
+</html>

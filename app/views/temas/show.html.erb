@@ -1,0 +1,178 @@
+<%= render :layout => 'layouts/groups_layout' do%>
+<input type="hidden" id="current_user" value="<%=current_user.nil? ? 0 : current_user.id%>">
+<div class="row">
+<div class="col-lg-6 ">
+    <div class="well">
+        <form class="bs-example form-horizontal">
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <div>
+                  <h2><%= link_to @tema.usuario.nombre_usuario,  @tema.usuario %></h2>
+                </div>
+                <div>
+                  <%= image_tag avatar_tam_url(@tema.usuario,110), :onmouseover => "dentro(this);"%>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9">
+            <div class=row style="margin-left:20px;">
+              <legend>
+                &nbsp;<%= @tema.titulo %></legend>
+            </div>
+            <div class=row style="margin-left:20px;">
+              <table class="table table-bordered">
+                <tr>
+                  <td>&nbsp;<%= @tema.created_at.strftime("%Y-%m-%e Hora: %I:%M") %></td>
+                </tr>
+                <tr>
+                  <td>&nbsp;<%= @tema.cuerpo %></td>
+                </tr>
+              </table>
+            </div>
+              <div class=row style="margin-left:20px;">
+                <%if current_user!=nil && @tema.usuario_correo==current_user.correo%>
+                &nbsp;<%= link_to "Editar", edit_tema_path(@tema), :method => :post%>
+                    
+                    <%if @tema.grupo.usuario_id == current_user.id || @tema.usuario_correo==current_user.correo %>
+                      &nbsp;&nbsp;&nbsp;<%= link_to 'Eliminar Tema', visible_tema_path(@tema), data: { confirm: 'Se eliminara el tema, ¿Está seguro?' } %>
+                    <%end%>
+                <%end%>
+                 &nbsp;&nbsp;&nbsp;
+                <%if current_user!=nil%>
+                <%cont=0%>
+                  <% current_user.suscripcion_temas.each do |subs| %>
+                    <% if subs.tema_id == @tema.id%>
+                      <% cont=cont+1%>
+                      <%= link_to "Ya no me Interesa", rechazar_tema_path(@tema.id)%>
+                    <%end%>
+                  <%end%>
+                  <% if cont <= 0 %>
+                      <%= link_to "Me Interesa", suscribirse_tema_path(@tema.id)%>
+                  <%end%>
+                <%end%>
+                <br><br><div id="share-button" class="fb-share-button" data-href="<%=request.original_url %>" data-type="button_count">
+              </div>
+               
+                <br>
+                <br>
+                <div class="fb-like" data-href="<%=request.original_url %>" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
+
+              </div>
+            </div>
+          </div>
+          <% if(@tema.archivo_adjunto_temas.size>0) %>
+          <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                  <label><i class="icon-download"></i> Adjuntos</label>
+                  <hr style="margin-top:0px;" />
+                  <ul>
+                  <% @tema.archivo_adjunto_temas.each do |arch| %>
+                    <li class="attachment-link" title="Archivo tipo .<%=arch.archivo_file_name.split('.').last%>">
+                      <a href="<%=arch.archivo.url(download: true)%>"><img class="attachment-img" src="/assets/filetypes/default.png" file-type="<%=arch.archivo_file_name.split('.').last%>" ><%=arch.archivo_file_name[0,arch.archivo_file_name.rindex('.')]%></a>
+                    </li>
+                  <%end%>
+                  </ul>
+                </div>
+              </div>
+          </div>
+        </form>
+      </div>
+</div>
+</div>
+<div class="row">
+  <div class="col-lg-6 ">
+    <div class="well">
+      <%if current_user!=nil%>
+      	<%= form_for([@tema, @tema.tema_comentarios.build], :html => { :class => 'bs-example form-horizontal', :multipart => true} ) do |f| %>
+            <div class="form-group">
+              <label for="inputContent">Comentario:</label>
+                <%= f.text_area :cuerpo, :class=>'form-control',:rows=>'4', :cols =>'20', :placeholder=>'Contenido' %>
+            </div>
+                  <div class="form-group">
+                   <label for="inputDate" class="col-lg-2 control-label">Adjuntar archivos:</label>
+                    <div class="col-lg-10 input-group">
+                      <input id="showFiles" class="form-control" type="text" placeholder="Seleccione archivos..." onclick="document.getElementById('tema_comentario_archivo').click();" onfocus="this.blur();">
+                      <%= f.file_field :archivo , :class=>'form-control',:multiple => true, :style=>"display:none;", :onchange=>"document.getElementById('showFiles').value = (this.files.length>1)?''+this.files.length+' Archivos seleccionados.':this.files[0].name;" %>
+                      <span class="input-group-addon" style="background-color: #256188; cursor:pointer;" onclick="document.getElementById('tema_comentario_archivo').click();">
+                        <i class="icon-file icon-white"></i>
+                      </span>
+                    </div>
+                  </div>
+            <div class="form-group">
+                <input type="submit" value="Comentar" class="btn btn-primary">
+            </div>
+      	<% end %>
+      <%end%>
+    </div>
+  </div>
+</div>
+<div class="col-12 col-md-10 col-lg-8">
+<center><%= paginate @comentarios %></center>
+<%for comentario in @comentarios%>
+	<%if(comentario.id!=nil)%>
+	<div class="media">
+	  <a class="pull-left" href="#">
+	  	<%= image_tag avatar_tam_url(comentario.usuario,70) %>
+	  </a>
+	  <div class="media-body">
+	    <h4 class="media-heading"><%= link_to comentario.usuario.nombre_usuario,  comentario.usuario %></h4>
+	    <%=comentario.cuerpo%>
+	    <br>
+	    <%if current_user!=nil && comentario.usuario.correo == current_user.correo%>
+	    	<%= link_to 'Editar', "/temas/editar_comentario/"+comentario.id.to_s %>
+        <%= link_to 'Eliminar', "/tema_comentarios/delete/"+comentario.id.to_s, data: { confirm: 'Se eliminara el tema, ¿está seguro?' } %>
+        <%end%>
+        <%if current_user!=nil && comentario.tema.grupo.usuario_id == current_user.id%>
+        <%= link_to 'Eliminar', "/tema_comentarios/delete/"+comentario.id.to_s, data: { confirm: 'Se eliminara el tema, ¿está seguro?' } %>
+	    <%end%>
+	  </div>
+	</div>
+  <%if (comentario.adjunto_tema_comentarios.size>0)%>
+  <div class="row">
+   <div class="col-lg-4">
+    <div class="panel-group" id="acordeon<%=comentario.id%>">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#acordeon<%=comentario.id%>" href="#collapse<%=comentario.id%>">
+              <div>
+              Archivos adjuntos
+              </div>
+            </a>
+          </h4>
+        </div>
+        <div id="collapse<%=comentario.id%>" class="panel-collapse collapse">
+          <div class="panel-body">
+            <% comentario.adjunto_tema_comentarios.each do |arch|%>
+                <div class="attachment-link" title="Archivo tipo .<%=arch.archivo_file_name.split('.').last%>">
+                  <a href="<%=arch.archivo.url(download: true)%>"><img class="attachment-img" src="/assets/filetypes/default.png" file-type="<%=arch.archivo_file_name.split('.').last%>" width="16px"><%=arch.archivo_file_name[0,arch.archivo_file_name.rindex('.')]%></a>
+                </div>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+  </div>
+</div>
+<%end%>
+	<%end%>
+<%end%>
+<%end%><%end%>
+<script type="text/javascript">
+  getImagesForAttachedFiles();
+</script>
+
+ <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  </script>
+
+</div>

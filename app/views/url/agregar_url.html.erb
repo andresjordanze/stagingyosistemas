@@ -1,0 +1,28 @@
+<% if current_user.rol=="Administrador" %>	
+	<h2>Agregar una nueva url para los mails de los usuarios</h2>
+	<%= form_for :url do |f| %>
+	  <p>
+	    <%= f.label :direccion %><br>
+	    <%= f.text_field :direccion, :size => '80' %>
+	  </p>
+
+	  <div class="col-lg-10 col-lg-offset-2" style="margin-left:-15px;">
+	        <input type="submit" value="Ingresar URL" class="btn btn-success">
+	  </div>
+	<% end %>
+	<br>
+	<br>
+	<h2>Historial de urls utilizadas</h2>
+	<table class="table table-striped">
+		<th>Dirección URL</th>
+		<th>Fecha de creación</th>
+		<% @urls.each do |u| %>
+			<tr>
+				<td><%= u.direccion%></td>
+				<td><%= u.created_at.to_date%></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+<h1>Usted no esta autorizado a ver esta pagina</h1>
+<% end %>

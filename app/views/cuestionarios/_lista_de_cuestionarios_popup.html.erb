@@ -1,0 +1,77 @@
+<h1>Lista de Cuestionarios</h1>
+<br>
+<br>
+<div class="row bs-example bs-example-type">
+   <div class="col-lg-1">
+  </div>
+  <div class="col-lg-10">
+  <div class="panel-group" id="accordion">
+    <% @cuestionarios.each do |cuestionario| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <div class="row">
+          <div class="col-lg-4">
+            <a data-toggle="collapse" data-parent="#accordion" href="<%= "#collapse" + cuestionario.id.to_s %>">
+              <%= cuestionario.titulo%>
+          </a>
+        </div>
+        <div class="col-lg-4 col-lg-offset-4">
+          <a  href="<%= "/cuestionarios/usar_plantilla/" + cuestionario.id.to_s %>">
+             Usar Cuestionario
+           </a>
+       </div>
+       </div>
+      </h4>
+    </div>
+    <div id="<%= "collapse" + cuestionario.id.to_s%>" class="panel-collapse collapse in">
+      <div class="panel-body">
+                        <div class="well">
+          <div class="row">
+        <div class="col-lg-8">
+          <br>
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Titulo</th>
+                    </tr>
+                      </thead>
+                        <tbody>
+                          <tr>
+                            <td><%= cuestionario.titulo %></td>
+                          </tr>
+                        </tbody>
+                  </table>
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Descripcion</th>
+                    </tr>
+                      </thead>
+                        <tbody>
+                          <tr>
+                            <td><%= cuestionario.descripcion %></td>
+                          </tr>
+                        </tbody>
+                  </table>
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                  <tr>
+                    <th>Fecha Limite</th>
+                      </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><%= cuestionario.fecha_limite.strftime("%m/%d/%Y") %></td>
+                          </tr>
+                        </tbody>
+                  </table>
+        </div>
+         </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <% end %>
+  </div>
+  </div>

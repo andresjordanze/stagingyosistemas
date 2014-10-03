@@ -1,0 +1,37 @@
+	<div class="row">
+  <div class="col-lg-6">
+    <div class="well">
+      <form class="bs-example form-horizontal">
+		  <fieldset>
+		  <legend>Nombre:
+		  	<%= @grupo.nombre %>
+		  </legend>
+		  <div class="form-group">
+		    <div class="col-lg-10">
+		     <b>Descripcion:</b><%= @grupo.descripcion %>
+		    </div>
+		   </div>
+  		  </fieldset>
+		</form>
+		<%if current_user!=nil%>
+		<%= form_for([@grupo, @grupo.subscripcions.build]) do |f| %>
+			<%if @grupo.estado == true %>
+			<div class="form-group">
+                <label for="inputTitle" class="col-lg-2 control-label">Ingresar Llave:</label>
+                	<div class="col-lg-5">
+                        <%= f.text_field :llave , :class=>'form-control', :placeholder=>'llave'%>
+                    </div>
+            </div>
+			<%elsif @grupo.estado == false%>
+				</p> Este grupo es publico
+		  </p>
+				<%= f.hidden_field :llave, :value =>"publico" %>
+			<%end%>
+			<div class="form-group">
+                    <input type="submit" value="Suscribirse" class="btn btn-primary">
+            </div>
+			<% end %>
+		<%end%>
+      </div>
+    </div>
+  </div>

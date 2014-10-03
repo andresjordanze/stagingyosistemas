@@ -1,0 +1,104 @@
+SP1(AJ) - Corregir las validaciones y mensajes en ingles y español, al crear Usuarios.
+SP1(MA) - Al crear y editar tema, anhadir boton cancelar en lugar del link 'atras'.
+SP1(AJ) - Corregir las validaciones y mensajes en ingles y español, al crear y editar Temas.
+SP1(OG) - La interfaz del Show de tema esta mal alineada, la foto de perfil se sale de cuadro y el nombre de usuario colisiona con el titulo del tema y las opciones de editar, eliminar, etc, se puede aprovechar mas el espacio completo.
+SP1- Deberia verse el nombre del usuario que creo un tema en la lista de temas y aprovechar mejor el espacio para mostrarlos.
+SP1 - El  Ordenar los temas deberia ser por titulo y fecha de creacion
+SP1(AJ) - Interfaz fuera de lugar(crear grupo), la etiqueta del campo descripcion esta mal alineada (en ver grupos tambien).
+SP1(AJ) - No se valida el nombre del grupo, pueden haber grupos con el mismo nombre
+SP1(MA) - Al crear Grupo y crear tema, anhadir boton cancelar en lugar del link 'atras'.
+SP1(MA) - Mal redireccionamiento en la creacion o modificacion de temas, que deberia llevarme al tema recientemente creado.
+SP1(AJ) - Icono de buscar grupos no funciona y esta mal alineado.
+SP1(MA) - No hay una opcion que te permita modificar informacion del grupo.
+SP1(AJ) - No se pueden eliminar(deshabilitar) grupos.
+SP1(IAR) - La opción de subscribirse a grupos debería tener un link en la pagina principal, 
+para hacerlo más intuitivo, puede ser cerca de grupos, utilizaremos el codigo para subscribirnos a los grupos de manera directa.
+SP1(IAR) -  El link en el email para registro direccion incorrectamente a staging en lugar 
+  de a producción.
+SP1(MA) - No existen validaciones al modificar nombre y apellido.
+SP1(MA) - Deja utilizar la misma contraseña al hacer cambio.
+SP1(AJ) - Las etiquetas de titulos no son las mismas que el titulo(modificar correo-cambiar correo, modificar perfil)
+SP1(AP,SK) - La hora de rails no esta correctamente configurada.
+
+----------------------------------------------------------------------------------------------------
+
+CHAT:
+(IAR) -  El chat muestra todos los usuarios, debería mostrar solo los de mis grupos
+(IAR) -  El chat debería poder minimizarse
+(IAR) -  El chat se sale de cuadro cuando te mueves arriba/abajo
+(OG) - La interfaz de la barra de chat y las conversaciones, no es muy buena y se pierde en el footer.
+(OG) - Deberia poder acceder al perfil de un Usuario desde su nombre en la ventana de chat.
+(RE) - La barra de info bloquea en algunas ocaciones el espacio para responder el chat 
+
+
+MISCELANEO:       
+(IAR) - Interfaz de usuario de la pantalla principal, se podría mejorar la alineación        
+
+GRUPOS:
+
+(IAR) -  En la pantalla principal, se debería distinguir los grupos privados de los públicos
+actualmente solo se tiene un título que dice 'publicos' donde se listan los grupos 
+públicos y privados.
+
+
+EVENTOS:
+(RE) - No se pueden elimar o modificar eventos desde la lista de eventos
+(RE) - Al momento de crear un evento la barra de info bloquea por completo la opcion de modificar y eliminar evento
+(OG) - Al crear un evento, tengo las opciones de visibilidad Publico/Privado, y la opcion de que el evento sea publico o aparezca en un grupo seleccionado al que pertenezco... No entiendo la diferencia o la utilidad que hay en tener la opcion de visibilidad(privacidad)
+(OG) - Al crear un evento, no me permite crearlo en dias que ya pasaron, pero si me permite crearlo el dia presente en horas que ya pasaron. Ejemplo, hoy 26, son las 2:30 PM, no deberia poder crear eventos con horas antes de las 3:00 PM, el sistema me permite hacerlo.
+(OG) - El index de Eventos, no tiene paginacion, es decir me mostrara todos los eventos en una misma pagina.
+(OG) - Los labels para la informacion de los eventos, no esta de acuerdo a un formato, mezcla mayusculas, minusculas, no hay puntos (:) en todas.
+(OG) - El formato de la fecha que se muestra en los eventos, no es el adecuado para los usuarios o clientes del sistema.
+(OG) - Los eventos no tienen privacidad, un usuario puede ver todos los eventos creados.
+
+TEMAS:
+SP2 - No hay paginacion en los temas
+SP2(RE) - Cuando ingresas a un tema que ya fue eliminado no te redirecciona a otra pagina automaticamente, salta un error que la pagina no existe.
+SP2(OG) - Los archivos que se comparten en los temas, son descargados automaticamente, seria mejor poder ver (En caso de imagenes) un preview o un thumbnail del archivo, o verlo antes de que sea descargado.
+SP2(OG) - La opcion de seguir tema, me imagino que cuando se le da click deberia permitirnos recibir notificaciones cuando alguien comenta o sube algun archivo en el tema, contrario a esto, solo manda un correo avisando que se hizo un comentario.... NOtificaciones no sirven de nada al parecer.
+
+
+SESIONES:
+(OG) - El sistema permite estar con varias sesiones para el mismo usuario al mismo tiempo, no hay control de acceso o de inicio de sesion.
+
+
+USUARIOS:
+(OG) - El perfil de un usuario es sumamente basico y poco interesante, solo tiene nombre y apellido...(MEJORAR UI)
+(AJ) - Interfaz fuera de lugar(modificar perfil,modificar correo)
+
+
+CUESTIONARIOS:
+(AJ) - Al querer calificar una pregunta con opciones de respuesta multiples no salen las respuestas para calificar
+(AJ) - Interfaz fuera de lugar(crear cuestionario, preguntas, respuestas)
+(MA) - Pregunta esperada por defecto para todas al colocar mas de una opcion
+(MA) - Si ya se respondio la encuesta no se debe poder modificar, o notificar a las personas que ya respodieron de que se modifico el cuestionario
+
+NOTIFICACIONES:
+(AJ,MA) No funcionan
+
+SUBIDA ARCHIVOS:
+(AP,SK) - La subida de archivos esta realizada de manera correcta, no se pudo observar ningun inconveniente. Se probo subir 
+          imagenes como png o jpg y estas fueron subidas correctamente, tambien se probo subir archivos .tar.gz o .zip
+          y estos se subieron sin problemas. De la misma manera se subieron archivos pdf y docx.
+*- SUGERENCIAS: Como sugerencia se podria implementar una barra que nos indique el porcentaje que se ha subido de un archivo, algo especialmente util para archivos grandes.
+
+INTERFAZ GRAFICA:
+
+(AP,SK) - Al crear un evento con un detalle muy corto, el footer sube demasiado, sobreponiendose al chat.
+        - Al deslizar la pagina hacia abajo, el chat se oculta debajo del footer, lo que no permite ver el chat.
+        - Cuando uno accede a una pagina como por ejemplo cuestionarios y selecciona la opcion de cuestinarios, si esta
+          seccion esta vacia, el footer se pone encima del chat, pero no puede deslizarse la pagina, por lo que resulta 
+          imposible ver el chat de manera correcta.
+        - Se pierde mucho espacion en la parte superior con un logo tan grande y en navegadores como Mozilla, que tienen
+          una barra de tareas y menus ancha, el primer vistazo de la pagina no nos dice mucho del contenido.
+        - El footer tambien es muy amplio, podria reducrise a simplemente la seccion inferior mas oscura.
+        - En monitores anchos, el logo se observa pixeleado, deberia redisenarse el logo con un programa de editaje 
+          vectorial.
+        - En la pagina principal, al cambiar de grupo, se intento realizar la carga de la seccion de temas y tareas
+          de manera que no se deba recargar toda la pagina, solo esa seccion, pero esto no es asi, ya que toda la pagina
+          vuelve a recargase.
+        - Lo mismo ocurre al cambiar entre las pestanas de Temas y Tareas, Temas, Tareas y Cuestionarios.
+
+
+Próximos
+Cuando se tiene la ventana reducida no deberia distorsionar tanto la seccion de temas, en la pagina principal

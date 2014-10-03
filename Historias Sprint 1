@@ -1,0 +1,48 @@
+Deja utilizar la misma contraseña al hacer cambio.
+	La nueva contraseña ingresada ya a sido utilizada
+	Error ortografico
+No hay una opcion que te permita modificar informacion del grupo.
+	CHECK
+No existen validaciones al modificar nombre y apellido.
+	["Nombre solo letras permitidas"]
+	Mensaje mas amigables
+No se valida el nombre del grupo, pueden haber grupos con el mismo nombre.
+	Error al crear un grupo
+	Se deberia especificar el tipo de error que se esta generando
+El  Ordenar los temas deberia ser por titulo y fecha de creación.
+	Posiblemente agregar el ascendente, descendente
+Corregir las validaciones y mensajes en ingles y español, al crear Usuarios.
+	Nombre es requerido, no puede ser nulo
+	Nombre solo letras permitidas
+	Apellido es requerido, no puede ser nulo
+	Apellido solo letras permitidas
+	Mensajes mas amigables
+Al crear y editar tema, anhadir boton cancelar en lugar del link 'atras'.
+	Cancelar crear Tema redirecciona a lista de eventos
+	Cancelar editar Tema redirecciona a lista de eventos
+Al crear Grupo y editar grupo, anhadir boton cancelar en lugar del link 'atras'.
+	En editar grupo preferiblemente redireccionar a mis grupos.
+Icono de buscar grupos no funciona y esta mal alineado.
+	CHECK
+Las etiquetas de titulos no son las mismas que el titulo(modificar correo-cambiar correo, modificar perfil)
+	CHECK    
+Corregir las validaciones y mensajes en ingles y español, al crear y editar Temas.
+	Titulo es requerido (El titulo es requerido aunquesea :) )
+    Contenido es requerido 
+    Mensajes mas amigables
+Deberia verse el nombre del usuario que creo un tema en la lista de temas.
+	CHECK
+Interfaz fuera de lugar(crear grupo), la etiqueta del campo descripcion esta mal alineada (en ver grupos tambien).
+	CHECK
+No se pueden eliminar(deshabilitar) grupos.
+	Problema en produccion por el habilitar
+El link en el email para registro direcciona incorrectamente a staging en lugar de a producción.
+	CHECK
+La interfaz del Show de tema esta mal alineada, la foto de perfil se sale de cuadro y el nombre de usuario colisiona con el titulo del tema y las opciones de editar, eliminar, etc
+	CHECK
+Mal redireccionamiento en la creacion o modificacion de temas, que deberia llevarme al tema recientemente creado.
+	CHECK
+La opción de subscribirse a grupos debería tener un link en la pagina principal,para hacerlo más intuitivo, puede ser cerca de grupos, utilizaremos el codigo para subscribirnos a los grupos de manera directa.
+	CHECK
+La hora de rails no esta correctamente configurada. (Research)
+	CHECK

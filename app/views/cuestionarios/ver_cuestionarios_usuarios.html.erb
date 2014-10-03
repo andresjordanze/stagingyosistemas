@@ -1,0 +1,30 @@
+<h1>Lista de Suscritos</h1>
+<br>
+<br>
+<div class="col-sm-6">
+	<div class="table-responsive">
+  <div class="list-group">
+  	<table class="table table-condensed">
+  	<tr>
+    <% @usuarios.each do |usuario| %>
+        <td class="active">
+      <h4> <%= image_tag avatar_tam_url(usuario,40) %>&nbsp;&nbsp;<%= usuario.nombre %> &nbsp;<%= usuario.apellido %></h4>
+  		</td>
+  		<%if RespuestaUsuario.ya_respondio_cuestionario(usuario.id,@cuestionario.id)%>
+  		<td class="active">
+      <form method="get" action="<%= "cargar_respuestas/"+ usuario.id.to_s + "/" + @cuestionario.id.to_s %> " data-method="delete" >
+           <button type="submit" class="btn btn-success">Calificar preguntas de texto</button>
+      </form>
+      </td>
+      <%else%>
+      <td>
+      	<h4>Todavia no respondio cuestionario<h4>
+      </td>
+      <%end%>
+        </tr>
+    <% end %>
+
+	</table>
+  </div>
+</div>
+</div>

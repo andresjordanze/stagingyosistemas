@@ -1,0 +1,65 @@
+<%= form_for @tema, :html => { :class => 'bs-example form-horizontal', :multipart => true} do |f| %>
+<%= f.hidden_field :id,:value => @id%>
+  <div class="row">
+          <div class="col-lg-10">
+            <div class="well">
+                <% if @tema.errors.any? %>
+                   <div id ="errorRegistroUsuario" class="alert alert-error">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <ul>
+                         <% @tema.errors.full_messages.each do |msg| %>
+                         <li><%= msg %></li>
+                         <% end %>
+                      </ul>
+                   </div>
+                <% end %>
+                <fieldset>
+
+                <legend>Ingrese los datos del tema </legend>
+                  <div class="form-group">
+                    <div class="form-group <%=((@tema.errors.get(:titulo).nil?) ? '' : ' has-error')%>">
+                     <label for="inputTitle" class="col-lg-2 control-label">Titulo:</label>
+                    <div class="col-lg-10">
+                        <%= f.text_field :titulo , :class=>'form-control', :placeholder=>'Titulo', :maxlength => 50 , :title => "El titulo del tema es obligatorio, Por favor rellene este campo" %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputContent" class="col-lg-2 control-label">Contenido:</label>
+                    <div class="col-lg-10">
+                      <%= f.text_area :cuerpo, :class=>'form-control',:rows=>'6', :placeholder=>'Contenido', :maxlength => 500 %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputGroup" class="col-lg-2 control-label">Grupo:</label>
+                    <div class="col-lg-10">
+                      <%=f.collection_select(:grupo_id, @grupos, :id, :nombre, {:selected => @grupo.id}, :class=>'form-control')%>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                   <label for="inputDate" class="col-lg-2 control-label">Adjuntar archivos:</label>
+                    <div class="col-lg-10 input-group">
+                      <input id="showFiles" class="form-control" type="text" placeholder="Seleccione archivos..." onclick="document.getElementById('tema_archivo').click();" onfocus="this.blur();">
+                      <%= f.file_field :archivo , :class=>'form-control',:multiple => true, :style=>"display:none;", :onchange=>"document.getElementById('showFiles').value = (this.files.length>1)?''+this.files.length+' Archivos seleccionados.':this.files[0].name;" %>
+                      <span class="input-group-addon" style="background-color: #256188; cursor:pointer;" onclick="document.getElementById('tema_archivo').click();">
+                        <i class="icon-file icon-white"></i>
+                      </span>
+                    </div>
+                  </div>
+                   &nbsp; &nbsp; &nbsp; &nbsp;
+                  <div class="form-group">
+										<div class="col-md-4">	
+											<div class "btn-group">							
+											&nbsp; &nbsp; &nbsp; &nbsp;<a href="javascript:window.history.back();" class="btn btn-danger">&laquo; Cancelar</a>
+									</div>
+								</div>
+									<div class="col-md-4">
+                    <div class="col-lg-10 col-lg-offset-2">
+                      <input type="submit" value="Crear tema" class="btn btn-success">
+                    </div>
+                  </div>
+								</div>
+                </fieldset>
+        </div>
+    </div>
+   </div>
+<% end %>

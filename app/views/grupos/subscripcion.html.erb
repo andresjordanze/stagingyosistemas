@@ -1,0 +1,40 @@
+|<div class="row">
+  <div class="col-lg-6">
+    <div class="well">
+      <form class="bs-example form-horizontal">
+		  <fieldset>
+		  <legend>Nombre:
+		  	<%= @grupo.nombre %>
+		  </legend>
+		  <div class="form-group">
+		    <div class="col-lg-10">
+		     <b>Descripcion:</b><%= @grupo.descripcion %>
+		    </div>
+		   </div>
+		  <legend>Llave:
+		  	<% if @grupo.llave != nil %>
+		  		<%= @grupo.llave %>
+		  	<% else %>
+		  		sin llave
+		  	<% end %>
+		  </legend>
+  		  </fieldset>
+		  </p>
+		  </p>
+		</form>
+		<%if current_user!=nil && @grupo.estado == true%>
+		<%= form_for([@grupo, @grupo.subscripcions.build]) do |f| %>
+			<div class = "field">
+				<h4><strong>Ingresar LLave</strong></h4>
+				<%= f.text_field :llave %>
+			</div>
+
+			<div class = "action">
+				
+	    		<input type="submit" value="Suscribirse" class="btn btn-inverse">
+			</div>
+			<% end %>
+		<%end%>
+      </div>
+    </div>
+  </div>

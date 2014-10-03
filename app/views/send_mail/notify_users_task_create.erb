@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hola, <%= @user.nombre %></h1>
+    <p>
+     Se creo la tarea: <%= @tarea.titulo.upcase%>
+ 	 en el grupo: <%= @grupo.nombre.upcase %>.<br>
+     Para verlo visita la pagina:<br>
+     <a href=<%= @url %>> </a>
+      <br>
+    </p>
+    <p>Staff de YoSistemas</p>
+  </body>
+</html>

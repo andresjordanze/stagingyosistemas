@@ -1,0 +1,101 @@
+2013-12-01T16:15:36.045267+00:00 app[web.1]:     127:         
+2013-12-01T16:15:36.045267+00:00 app[web.1]:     128:         <%if  mensajes_nuevos.length >0 %>
+2013-12-01T16:15:36.045267+00:00 app[web.1]:     129:           <span class="badge"><%=mensajes_nuevos.length%></span>
+2013-12-01T16:15:36.045108+00:00 app[web.1]: LINE 1: SELECT de_usuario_id,created_at,count(de_usuario_id) as cant...
+2013-12-01T16:15:36.045267+00:00 app[web.1]:     131:         </a>
+2013-12-01T16:15:36.045267+00:00 app[web.1]: : SELECT de_usuario_id,created_at,count(de_usuario_id) as cantidad FROM "mensajes"  WHERE "mensajes"."para_usuario_id" = 1 AND "mensajes"."visto" = 'f' GROUP BY de_usuario_id):
+2013-12-01T16:15:36.045267+00:00 app[web.1]:     125:       <li class="dropdown active">
+2013-12-01T16:15:36.045267+00:00 app[web.1]:     126:         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/message.png" width="21" title="Mensajes">
+2013-12-01T16:15:36.045406+00:00 app[web.1]: I, [2013-12-01T16:15:17.689641 #2]  INFO -- : Started GET "/" for 181.114.73.111 at 2013-12-01 16:15:17 +0000
+2013-12-01T16:15:36.045267+00:00 app[web.1]:     130:         <%end%>
+2013-12-01T16:15:36.045406+00:00 app[web.1]: I, [2013-12-01T16:15:17.724019 #2]  INFO -- :   Rendered layouts/_groups_layout.html.erb (21.8ms)
+2013-12-01T16:15:36.045406+00:00 app[web.1]: I, [2013-12-01T16:15:17.724235 #2]  INFO -- :   Rendered temas/index.html.erb within layouts/application (22.2ms)
+2013-12-01T16:15:36.045406+00:00 app[web.1]: I, [2013-12-01T16:15:17.734829 #2]  INFO -- :   Rendered layouts/_navigation.html.erb (4.5ms)
+2013-12-01T16:15:36.045267+00:00 app[web.1]:   app/views/layouts/_navigation.html.erb:128:in `_app_views_layouts__navigation_html_erb___3279126237943379993_40835780'
+2013-12-01T16:15:36.045406+00:00 app[web.1]: I, [2013-12-01T16:15:17.736712 #2]  INFO -- : Completed 200 OK in 43ms (Views: 21.0ms | ActiveRecord: 18.7ms)
+2013-12-01T16:15:36.045406+00:00 app[web.1]: I, [2013-12-01T16:15:18.779653 #2]  INFO -- : Started GET "/assets/nested_form-aa1209f2c061779f35baade1dfe7d59d.js" for 181.114.73.111 at 2013-12-01 16:15:18 +0000
+2013-12-01T16:15:36.045267+00:00 app[web.1]:   app/views/layouts/application.html.erb:59:in `_app_views_layouts_application_html_erb__702250783382815938_43999400'
+2013-12-01T16:15:36.045406+00:00 app[web.1]: 
+2013-12-01T16:15:36.045406+00:00 app[web.1]: I, [2013-12-01T16:15:17.693609 #2]  INFO -- : Processing by TemasController#index as HTML
+2013-12-01T16:15:36.045763+00:00 app[web.1]: ActionController::RoutingError (No route matches [GET] "/javascripts/defaults.js"):
+2013-12-01T16:15:36.045406+00:00 app[web.1]: I, [2013-12-01T16:15:17.736339 #2]  INFO -- :   Rendered layouts/_bootom_bar.html.erb (0.5ms)
+2013-12-01T16:15:36.045406+00:00 app[web.1]: 
+2013-12-01T16:15:36.045763+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/railties-4.0.0/lib/rails/rack/logger.rb:21:in `block in call'
+2013-12-01T16:15:36.045763+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/activesupport-4.0.0/lib/active_support/tagged_logging.rb:67:in `block in tagged'
+2013-12-01T16:15:36.045763+00:00 app[web.1]: F, [2013-12-01T16:15:18.886392 #2] FATAL -- : 
+2013-12-01T16:15:36.045901+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/railties-4.0.0/lib/rails/rack/logger.rb:21:in `call'
+2013-12-01T16:15:36.045763+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/actionpack-4.0.0/lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+2013-12-01T16:15:36.045763+00:00 app[web.1]: I, [2013-12-01T16:15:18.788358 #2]  INFO -- : Started GET "/assets/logo.png" for 181.114.73.111 at 2013-12-01 16:15:18 +0000
+2013-12-01T16:15:36.045763+00:00 app[web.1]: I, [2013-12-01T16:15:18.884240 #2]  INFO -- : Started GET "/javascripts/defaults.js" for 181.114.73.111 at 2013-12-01 16:15:18 +0000
+2013-12-01T16:15:36.045763+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/activesupport-4.0.0/lib/active_support/tagged_logging.rb:25:in `tagged'
+2013-12-01T16:15:36.045901+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/activesupport-4.0.0/lib/active_support/tagged_logging.rb:67:in `tagged'
+2013-12-01T16:15:36.045901+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/actionpack-4.0.0/lib/action_dispatch/middleware/request_id.rb:21:in `call'
+2013-12-01T16:15:36.045901+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/rack-1.5.2/lib/rack/methodoverride.rb:21:in `call'
+2013-12-01T16:15:36.045901+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/rack-1.5.2/lib/rack/runtime.rb:17:in `call'
+2013-12-01T16:15:36.045763+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/actionpack-4.0.0/lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+2013-12-01T16:15:36.045763+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/railties-4.0.0/lib/rails/rack/logger.rb:38:in `call_app'
+2013-12-01T16:15:36.049285+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/activesupport-4.0.0/lib/active_support/cache/strategy/local_cache.rb:83:in `call'
+2013-12-01T16:15:36.049285+00:00 app[web.1]:   vendor/ruby-1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+2013-12-01T16:15:36.049285+00:00 app[web.1]:   vendor/ruby-1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+2013-12-01T16:15:36.049285+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/actionpack-4.0.0/lib/action_dispatch/middleware/static.rb:64:in `call'
+2013-12-01T16:15:36.049285+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/railties-4.0.0/lib/rails/engine.rb:511:in `call'
+2013-12-01T16:15:36.049285+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/railties-4.0.0/lib/rails/application.rb:97:in `call'
+2013-12-01T16:15:36.049285+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/rack-1.5.2/lib/rack/lock.rb:17:in `call'
+2013-12-01T16:15:36.049285+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/rack-1.5.2/lib/rack/content_length.rb:14:in `call'
+2013-12-01T16:15:36.049285+00:00 app[web.1]:   vendor/bundle/ruby/1.9.1/gems/rack-1.5.2/lib/rack/handler/webrick.rb:60:in `service'
+2013-12-01T16:15:36.049459+00:00 app[web.1]: I, [2013-12-01T16:15:23.016953 #2]  INFO -- : Started GET "/assets/search.png" for 181.114.73.111 at 2013-12-01 16:15:23 +0000
+2013-12-01T16:15:36.049459+00:00 app[web.1]: 
+2013-12-01T16:15:36.049459+00:00 app[web.1]: I, [2013-12-01T16:15:23.186842 #2]  INFO -- : Started GET "/assets/logo-footer.png" for 181.114.73.111 at 2013-12-01 16:15:23 +0000
+2013-12-01T16:15:36.049459+00:00 app[web.1]: I, [2013-12-01T16:15:23.029593 #2]  INFO -- : Started GET "/assets/tema.png" for 181.114.73.111 at 2013-12-01 16:15:23 +0000
+2013-12-01T16:15:36.049459+00:00 app[web.1]: 
+2013-12-01T16:15:36.049459+00:00 app[web.1]:   vendor/ruby-1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+2013-12-01T16:15:36.049459+00:00 app[web.1]: I, [2013-12-01T16:15:23.200824 #2]  INFO -- : Processing by SessionsController#obtener_conectados as */*
+2013-12-01T16:15:36.049459+00:00 app[web.1]: I, [2013-12-01T16:15:23.206612 #2]  INFO -- :   Parameters: {"usuario_id"=>"0"}
+2013-12-01T16:15:36.049619+00:00 app[web.1]: 
+2013-12-01T16:15:36.049619+00:00 app[web.1]: F, [2013-12-01T16:15:23.216520 #2] FATAL -- : 
+2013-12-01T16:15:36.049459+00:00 app[web.1]: I, [2013-12-01T16:15:23.197550 #2]  INFO -- : Started GET "/sessions/obtener_conectados/0" for 181.114.73.111 at 2013-12-01 16:15:23 +0000
+2013-12-01T16:15:36.049619+00:00 app[web.1]:   app/controllers/sessions_controller.rb:47:in `obtener_conectados'
+2013-12-01T16:15:36.049459+00:00 app[web.1]: I, [2013-12-01T16:15:23.214731 #2]  INFO -- : Completed 404 Not Found in 7ms
+2013-12-01T16:15:36.049619+00:00 app[web.1]: ActiveRecord::RecordNotFound (Couldn't find Usuario with id=0):
+2013-12-01T16:15:36.049619+00:00 app[web.1]: 
+2013-12-01T16:15:36.049619+00:00 app[web.1]: I, [2013-12-01T16:15:23.464974 #2]  INFO -- : Started GET "/assets/glyphicons-halflings.png" for 181.114.73.111 at 2013-12-01 16:15:23 +0000
+2013-12-01T16:15:36.049619+00:00 app[web.1]: I, [2013-12-01T16:15:33.144078 #2]  INFO -- : Started GET "/sessions/obtener_conectados/0" for 181.114.73.111 at 2013-12-01 16:15:33 +0000
+2013-12-01T16:15:36.049619+00:00 app[web.1]: I, [2013-12-01T16:15:33.148405 #2]  INFO -- : Processing by SessionsController#obtener_conectados as */*
+2013-12-01T16:15:36.050002+00:00 app[web.1]: F, [2013-12-01T16:15:33.152398 #2] FATAL -- : 
+2013-12-01T16:15:36.049619+00:00 app[web.1]: I, [2013-12-01T16:15:33.148518 #2]  INFO -- :   Parameters: {"usuario_id"=>"0"}
+2013-12-01T16:15:36.050002+00:00 app[web.1]: ActiveRecord::RecordNotFound (Couldn't find Usuario with id=0):
+2013-12-01T16:15:36.049619+00:00 app[web.1]: I, [2013-12-01T16:15:33.150923 #2]  INFO -- : Completed 404 Not Found in 2ms
+2013-12-01T16:15:36.050002+00:00 app[web.1]:   app/controllers/sessions_controller.rb:47:in `obtener_conectados'
+2013-12-01T16:15:36.050002+00:00 app[web.1]: 
+2013-12-01T16:15:36.050002+00:00 app[web.1]: 
+2013-12-01T16:15:36.050002+00:00 app[web.1]: I, [2013-12-01T16:15:35.724328 #2]  INFO -- : Started POST "/sessions/eliminar_conectado" for 181.114.73.111 at 2013-12-01 16:15:35 +0000
+2013-12-01T16:15:36.050002+00:00 app[web.1]: I, [2013-12-01T16:15:35.726212 #2]  INFO -- : Processing by SessionsController#eliminar_conectado as */*
+2013-12-01T16:15:36.050002+00:00 app[web.1]: I, [2013-12-01T16:15:35.726308 #2]  INFO -- :   Parameters: {"usuario_id"=>"0"}
+2013-12-01T16:15:36.050002+00:00 app[web.1]: I, [2013-12-01T16:15:35.735748 #2]  INFO -- : Completed 404 Not Found in 9ms
+2013-12-01T16:15:36.050002+00:00 app[web.1]: F, [2013-12-01T16:15:35.737272 #2] FATAL -- : 
+2013-12-01T16:15:36.050146+00:00 app[web.1]:   app/controllers/sessions_controller.rb:54:in `eliminar_conectado'
+2013-12-01T16:15:36.050146+00:00 app[web.1]: 
+2013-12-01T16:15:36.050146+00:00 app[web.1]: 
+2013-12-01T16:15:36.050146+00:00 app[web.1]: I, [2013-12-01T16:15:35.738146 #2]  INFO -- : Started POST "/sessions" for 181.114.73.111 at 2013-12-01 16:15:35 +0000
+2013-12-01T16:15:36.050146+00:00 app[web.1]: I, [2013-12-01T16:15:35.739027 #2]  INFO -- : Processing by SessionsController#create as HTML
+2013-12-01T16:15:36.050146+00:00 app[web.1]: I, [2013-12-01T16:15:35.739126 #2]  INFO -- :   Parameters: {"correo"=>"docente", "contrasenia"=>"123456"}
+2013-12-01T16:15:36.050146+00:00 app[web.1]: I, [2013-12-01T16:15:35.760865 #2]  INFO -- : Redirected to http://staging-yosistemas.herokuapp.com/
+2013-12-01T16:15:36.050146+00:00 app[web.1]: ActiveRecord::RecordNotFound (Couldn't find Usuario with id=0):
+2013-12-01T16:15:36.050423+00:00 app[web.1]: I, [2013-12-01T16:15:35.973536 #2]  INFO -- : Processing by TemasController#index as HTML
+2013-12-01T16:15:36.050423+00:00 app[web.1]: I, [2013-12-01T16:15:36.012135 #2]  INFO -- :   Rendered layouts/_groups_layout.html.erb (29.0ms)
+2013-12-01T16:15:36.050423+00:00 app[web.1]: I, [2013-12-01T16:15:36.012332 #2]  INFO -- :   Rendered temas/index.html.erb within layouts/application (29.4ms)
+2013-12-01T16:15:36.050706+00:00 app[web.1]: E, [2013-12-01T16:15:36.044732 #2] ERROR -- : PG::GroupingError: ERROR:  column "mensajes.created_at" must appear in the GROUP BY clause or be used in an aggregate function
+2013-12-01T16:15:36.050706+00:00 app[web.1]: LINE 1: SELECT de_usuario_id,created_at,count(de_usuario_id) as cant...
+2013-12-01T16:15:36.050706+00:00 app[web.1]:                              ^
+2013-12-01T16:15:36.050706+00:00 app[web.1]: : SELECT de_usuario_id,created_at,count(de_usuario_id) as cantidad FROM "mensajes"  WHERE "mensajes"."para_usuario_id" = 1 AND "mensajes"."visto" = 'f' GROUP BY de_usuario_id
+2013-12-01T16:15:36.050146+00:00 app[web.1]: I, [2013-12-01T16:15:35.761989 #2]  INFO -- : Completed 302 Found in 23ms (ActiveRecord: 13.2ms)
+2013-12-01T16:15:36.050146+00:00 app[web.1]: I, [2013-12-01T16:15:35.972434 #2]  INFO -- : Started GET "/" for 181.114.73.111 at 2013-12-01 16:15:35 +0000
+2013-12-01T16:15:23.036988+00:00 heroku[router]: at=info method=GET path=/assets/tema.png host=staging-yosistemas.herokuapp.com fwd="181.114.73.111" dyno=web.1 connect=5ms service=13ms status=200 bytes=310
+2013-12-01T16:15:33.156667+00:00 heroku[router]: at=info method=GET path=/sessions/obtener_conectados/0 host=staging-yosistemas.herokuapp.com fwd="181.114.73.111" dyno=web.1 connect=1ms service=18ms status=404 bytes=1409
+2013-12-01T16:15:17.743899+00:00 heroku[router]: at=info method=GET path=/ host=staging-yosistemas.herokuapp.com fwd="181.114.73.111" dyno=web.1 connect=3ms service=60ms status=200 bytes=17912
+2013-12-01T16:15:18.794895+00:00 heroku[router]: at=info method=GET path=/assets/logo.png host=staging-yosistemas.herokuapp.com fwd="181.114.73.111" dyno=web.1 connect=3ms service=18ms status=200 bytes=4096
+2013-12-01T16:14:57.685803+00:00 heroku[router]: at=info method=GET path=/favicon.ico host=staging-yosistemas.herokuapp.com fwd="181.114.73.111" dyno=web.1 connect=15ms service=133ms status=200 bytes=0
+2013-12-01T16:14:56.921024+00:00 heroku[router]: at=info method=GET path=/ host=staging-yosistemas.herokuapp.com fwd="181.114.73.111" dyno=web.1 connect=1ms service=2439ms status=500 bytes=1323
+2013-12-01T16:15:36.511929+00:00 heroku[router]: at=info method=GET path=/favicon.ico host=staging-yosistemas.herokuapp.com fwd="181.114.73.111" dyno=web.1 connect=12ms service=10ms status=200 bytes=0
+2013-12-01T16:15:18.888566+00:00 heroku[router]: at=info method=GET path=/javascripts/defaults.js host=staging-yosistemas.herokuapp.com fwd="181.114.73.111" dyno=web.1 connect=8ms service=7ms status=404 bytes=1409
+2013-12-01T16:15:35.743279+00:00 heroku[router]: at=info method=POST path=/sessions/eliminar_conectado host=staging-yosistemas.herokuapp.com fwd="181.114.73.111" dyno=web.1 connect=8ms service=124ms status=404 bytes=1409

@@ -1,0 +1,71 @@
+<%= render :layout => 'layouts/groups_layout' do%>
+<div>
+<div class="page-header">
+     <h1 id="forms">Lista de Temas</h1>
+</div>
+<!--
+<form method="GET" action="/temas/searchmine">
+<div class="row">
+  <%if current_user!=nil%>
+    <div class="col-sm-12 col-md-2 col-lg-2">
+    </div>
+  <%end%>
+  <div class="input-group col-sm-12 col-md-8 col-lg-8" >
+    <span class="input-group-addon ">Titulo:</span>
+    <input type="text" name="titulo" class="form-control">
+    <span class="input-group-addon">Descripcion:</span>
+    <input type="text" name="descripcion"  class="form-control">
+    <span class="input-group-btn">
+        <input class="btn btn-default" type="submit" value="Buscar Temas">
+    </span>
+  </div>
+</div>
+</form>-->
+<br>
+<br>
+<br>
+<div class="row">
+<div class="col-lg-10">
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <%if @temas.size != 0%>
+        <% @var = "titulo" %>
+        <th><%=link_to "Titulo", ordertablemine_path(@ides,@var)%>  </th>
+      <%else%>
+        <th> Titulo </th>
+      <%end%>
+      <%if @temas.size != 0%>
+        <% @var2 = "detalle" %>
+        <th><%=link_to "Detalle", ordertablemine_path(@ides,@var2)%>  </th>
+      <%else%>
+        <th>Detalle </th>
+      <%end%>
+      <%if @temas.size != 0%>
+        <% @var3 = "grupo" %>
+        <th><%=link_to "Grupo", ordertablemine_path(@ides,@var3)%>  </th>
+      <%else%>
+        <th>Detalle </th>
+      <%end%>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @mine.to_s %>
+    <% @temas.each do |tema| %>
+      <%if tema.visible==1 %>
+      <tr style='cursor:pointer' onclick=<%="document.location.href='/temas/"+tema.id.to_s+"'"%>>
+        <td>
+          <FONT FACE="raro, courier" SIZE=5 COLOR="black"> <%= tema.titulo %><br> </FONT>
+          <SUB><%= tema.created_at.strftime("%Y-%m-%e")  %></SUB>
+        </td>
+    <td><%= tema.cuerpo[0..50]+"..." %></td>
+    <td><%= tema.grupo_nombre[0..50]+"..."%></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<%end%>

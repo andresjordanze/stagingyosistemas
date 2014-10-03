@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1>Resultados generales</h1>
+  </div>  
+  <br>
+  <br>
+  <div class="panel-body">
+  <div class="well">
+  <div class="row">
+  <div class="col-lg-8">
+  <div class="col-sm-6">
+    <div class="list-group">
+      <% cont=0%>
+      <% @preguntas.each do |pregunta| %>
+        
+        <table class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Pregunta: <%= pregunta.texto %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Correctas:&nbsp;<%= @respuestas_correctas.at(cont) %> &nbsp;&nbsp;&nbsp; Incorrectas:&nbsp;<%= @respuestas_incorrectas.at(cont) %></th>
+              
+            </tr>
+          </tbody>    
+        </table>
+        <% cont=cont+1 %>
+        <br>
+      <% end %>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+</div>  

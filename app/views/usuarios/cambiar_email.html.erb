@@ -1,0 +1,61 @@
+<%= render :layout => 'layouts/groups_layout' do%>
+<h1>Modificar Correo Electronico</h1>
+<div>
+	<% if flash[:status] == TRUE %>
+		<P><%= flash[:alert]%></P>
+	<% elsif flash[:status] == FALSE%>
+		<% flash[:alert].each do |error|%>
+			<p><%= error %></p>
+	<% end %>
+<% end %>
+</div>
+<%= form_for @usuario, :url =>guardar_cambio_email_path, :method=>'post'  do |usuario| %>
+<% usuario.hidden_field  :activa, :value=>true %>
+<div class="row">
+          <div class="col-lg-10">
+            <div class="well">
+              <form class="bs-example form-horizontal">
+                <fieldset>
+                  <legend>Ingrese la nueva direccion de correo electronica.</legend>
+                  <div class="col-lg-3" align="center">
+                    <div class="row" align="center">
+                      <%= image_tag avatar_tam_url(current_user,140) %>
+                    </div>
+                  </div>
+                  <div class="col-lg-12" align="center">
+                    <div class="form-group">
+                      <label for="inputName" class="col-lg-2 control-label">Correo actual:</label>
+                      <div class="col-lg-6">
+                        <%= usuario.text_field :correo, :class=>'form-control', :placeholder=>'Nombre' ,:disabled => true%>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword" class="col-lg-2 control-label">Nuevo correo:</label>
+                      <div class="col-lg-6">
+                        <%= text_field_tag :correonuevo, params[:correonuevo], :class=>'form-control'  %>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword" class="col-lg-2 control-label">Contraseña:</label>
+                      <div class="col-lg-6">
+                        <%= password_field_tag :contrasenia, params[:contrasenia], :class=>'form-control'  %>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-lg-10 col-lg-offset-4">
+                        &nbsp;
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-lg-10 col-lg-offset-4">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+        </div>
+    </div>
+   </div>
+<% end %>
+<%end%>

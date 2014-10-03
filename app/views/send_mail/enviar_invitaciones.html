@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>Invitación de suscripción a un grupo </h2>
+    <p>
+     El usuario <%= @usuario.nombre.upcase%>
+ 	    lo invita a unirse al grupo: <%= @grupo.nombre.upcase %>.<br>
+      Para suscribirse vaya al siguiente enlace.<br>
+     <a href=<%= @url %>>Suscribirse a grupo</a>
+      <br>
+      <b>Codigo de suscripcion al grupo: <%=@grupo.llave%>
+      <br>
+      <b>En caso de que no tenga una cuenta en Yosistemas vaya al siguiente enlace:
+        <br>
+        <a href=http://yosistemas.herokuapp.com/usuarios/new?Registrarse=>YoSistemas</a>
+    </p>
+    <p>Staff de YoSistemas</p>
+  </body>
+</html>

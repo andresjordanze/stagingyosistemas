@@ -1,0 +1,28 @@
+<div class="page-header">
+     <h1 id="forms">Tareas Creadas</h1>
+</div>
+<div class="row">
+  <div class="col-lg-10">
+    <% @tareas.each do |tarea| %>
+    <div class="panel panel-default" style='cursor:pointer' onclick=<%="document.location.href='/tareas/cargar_datos_tarea/"+tarea.grupo_id.to_s+"/"+tarea.id.to_s+"'"%>>
+      <div class="panel-heading" title="Titulo">
+        <h3 style="margin-top:0px; margin-bottom:0px;"><%= tarea.titulo %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+           <div class="col-sm-9 col-md-9 col-lg-9" title="Descripcion">
+            <span><%= tarea.descripcion[0,315]+(tarea.descripcion.length>315 ? "..." : "") %></span>
+           </div>
+           <p>&nbsp;</p>
+        </div>
+         <div class="row ">
+            <div class="col-sm-8 col-md-8 col-lg-8">
+              <medium style="color: gray;">Creada el <%= tarea.created_at.localtime.strftime("%d/%m/%Y a las: %I:%M  %p") %>
+              <span style="margin-left: 12px;"><i class="icon-calendar" style="margin-top: 0px;"></i>Fecha de entrega: <%= tarea.fecha_entrega.strftime("%d/%b/%Y")%></span> <span style="margin-left: 12px;"> Grupo:<%= tarea.grupo_id.to_s%> </span></medium>
+            </div>
+         </div>
+      </div>
+    </div>
+    <%end%>
+</div>
+</div>

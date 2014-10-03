@@ -1,0 +1,58 @@
+<%= form_tag( calificar_path, :method=>'post', :multipart => true) do %>
+<div class='bs-example form-horizontal'>
+  <div class="row">
+    <div class="col-lg-10">
+       <div class="well">
+          <fieldset>
+            <% @cuestionario.preguntas.each do |pregunta| %>
+              <div class="form-group" >
+                <% if pregunta.tipo == 'Texto Libre'%>
+                  <label for="inputTitle" class="col-lg-2 control-label"><%= pregunta.texto %></label>
+                  <% @respuestas.each do |respuesta|%>
+                    <% if  pregunta.id == respuesta.pregunta_id%>
+                      <div class="col-lg-8">    
+                        <%= text_area_tag :texto, respuesta.respuesta.to_s  ,options={:class=>'form-control' ,:disabled => true}%>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                      </div>
+                        <%= hidden_field_tag 'id_respuestas[]', respuesta.id %>
+                        <br>
+                </div>
+                        <% if  respuesta.calificacion==nil || respuesta.calificacion==""%>
+                        <div class="form-group" >
+                        <div class="col-lg-2">
+                        </div>
+                          <div class="col-lg-6">
+                            <%= text_area_tag 'comentarios[]', nil,options={:class=>'form-control' ,:placeholder => 'comentario'}  %>
+                            &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          </div>
+                        </div>
+                        <div class="form-group" >
+                        <div class="col-lg-2">
+                        </div>
+                          <div class="col-lg-10">
+                            <label>Correcta</label>&nbsp;<%= check_box_tag 'calificacion[]', true%>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label>Incorrecta</label>&nbsp;<%= check_box_tag 'calificacion[]', false%>
+                          </div>
+                        </div> 
+                        <% end %> 
+                    <% end %>
+                  <% end %> 
+                <% end %>
+              
+            <% end %>
+            </div>
+      
+        <%= hidden_field_tag :id_cuestionario, @cuestionario.id %>
+        <%= hidden_field_tag :id_usuario, current_user.id %>
+        <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-10">
+                <input type="submit" value="Aceptar" class="btn btn-primary">
+              </div>
+            </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

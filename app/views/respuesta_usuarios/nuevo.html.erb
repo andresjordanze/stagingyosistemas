@@ -1,0 +1,39 @@
+<%= form_tag( crear_path, :method=>'post', :multipart => true) do %>
+<div class='bs-example form-horizontal'>
+  <div class="row">
+    <div class="col-lg-10">
+       <div class="well">
+          <fieldset>
+            <% @cuestionario.preguntas.each do |pregunta| %>
+              <div class="form-group">
+                <label for="inputTitle" class="col-lg-3 control-label"><%= pregunta.texto %></label>
+                  <% if pregunta.tipo != 'Texto Libre'%>
+                    <% pregunta.respuestas.each do |respuesta| %>
+                      <label for="inputTitle" class="control-label"><%= respuesta.texto %></label>
+                        <%= check_box_tag  'resp[' + pregunta.id.to_s + '][]', respuesta.texto %>
+                        <%= hidden_field_tag 'id_pregunta[]', pregunta.id %>
+                    <% end %><br>
+                  <% else %>
+                    <div class="col-lg-9">    
+                      <%= text_area_tag 'resp['+ pregunta.id.to_s+ '][]', nil,options={:class=>'form-control' ,:placeholder => 'tu respuesta'} %>
+                    </div>
+
+                    <%= hidden_field_tag 'id_pregunta[]', pregunta.id %>
+                  <% end %>
+              </div>
+              <%= hidden_field_tag 'tipo_pregunta[' +pregunta.id.to_s + ']', pregunta.tipo %>
+            <% end %>
+            <%= hidden_field_tag :id_cuestionario, @cuestionario.id %>
+            <%= hidden_field_tag :id_usuario, current_user.id %>
+            <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-10">
+                <input type="submit" value="Aceptar" class="btn btn-success">
+              </div>
+            </div>
+        </fieldset>
+      </div>
+    </div>
+   </div>
+  </div>
+<% end %>
+

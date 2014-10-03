@@ -1,0 +1,77 @@
+<%if @comentario.usuario_id == current_user.id%>
+<h1>Editar comentario</h1>
+<%= form_for @comentario, url:editar_comentario_tema_path(@comentario.id), method: :post, :html => { :class => 'bs-example form-horizontal', :multipart => true} do |f| %>
+<div class="row">
+        <div class="col-lg-6">
+            <div class="well">
+              <form class="bs-example form-horizontal">
+                <% if @comentario.errors.any? %>
+                   <div id ="errorRegistroUsuario" class="alert alert-error">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      <ul>
+                         <% @comentario.errors.full_messages.each do |msg| %>
+                         <li><%= msg %></li>
+                         <% end %>
+                      </ul>
+                   </div>
+                <% end %>
+                <fieldset>
+                  <legend>Ingrese los datos del comentario </legend>
+                  <div class="form-group">
+                    <label for="inputContent" class="col-lg-2 control-label">Contenido:</label>
+                    <div class="col-lg-10">
+                      <%= f.text_area :cuerpo, :class=>'form-control',:rows=>'6', :placeholder=>'Contenido' %>
+                    </div>
+                  </div>
+                  <div class="form-group" style="margin-top:10px;">
+                    <% if(@comentario.adjunto_tema_comentarios.size>0) %>
+                    <div class="col-lg-11" style="width: 100%">
+                      <div class="panel panel-default">
+                          <div class="panel-body">
+                            <label><i class="icon-download"></i> Adjuntos</label>
+                            <hr style="margin-top:0px;" />
+                            <ul>
+                            <% @comentario.adjunto_tema_comentarios.each do |arch| %>
+                              <li id="<%=arch.id%>"  class="attachment-link" title="Archivo tipo .<%=arch.archivo_file_name.split('.').last%>">
+                                <a href="<%=arch.archivo.url(download: true)%>"><img class="attachment-img" src="/assets/filetypes/default.png" file-type="<%=arch.archivo_file_name.split('.').last%>" ><%=arch.archivo_file_name[0,arch.archivo_file_name.rindex('.')]%></a><span class="pull-right" style="cursor:pointer;" onclick="eliminarItemDeVista(<%=arch.id%>)"><!--<img src="/assets/delete.png" width="24">--></span>
+                              </li>
+                            <%end%>
+                            </ul>
+                          </div>
+                        </div>
+                    </div>
+                  <% end %>
+                  </div>
+                  <div class="form-group" style="margin-top:10px;">
+                    <div class="col-lg-11" style="width: 100%; margin-bottom: 10px;">
+                      <span data-toggle="collapse" data-target="#demo" style="cursor:pointer;" title="Añadir adjuntos">Agregar adjuntos&nbsp;<img style="margin-top:-2px;" src="/assets/add.png" width="24"></span>
+                      <div id="demo" class="collapse" style="margin-top: 10px;">
+                        <label for="inputDate" class="col-lg-2 control-label">Adjuntar archivos:</label>
+			            <div class="col-lg-10 input-group">
+				            <input id="showFiles" class="form-control" type="text" placeholder="Seleccione archivos..." onclick="document.getElementById('tema_comentario_archivo').click();" onfocus="this.blur();">
+				            <%= f.file_field :archivo , :class=>'form-control',:multiple => true, :style=>"display:none;", :onchange=>"document.getElementById('showFiles').value = (this.files.length>1)?''+this.files.length+' Archivos seleccionados.':this.files[0].name;" %>
+				            <span class="input-group-addon" style="background-color: #256188; cursor:pointer;" onclick="document.getElementById('tema_comentario_archivo').click();">
+				              <i class="icon-file icon-white"></i>
+				            </span>
+			            </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                      <button name="Guardar comentario" id="Guardar comentario" type="submit" class="btn btn-primary">Guardar comentario</button>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+        	</div>
+        <input type="hidden" id="elemsParaElim" name="elemsParaElim"  />
+    	</div>
+      <script type="text/javascript">
+  getImagesForAttachedFiles();
+</script>
+   </div>
+<%end %>
+<%else %>
+	<h1>No puedes editar este comentario!</h1>
+<%end%>

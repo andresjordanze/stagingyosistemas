@@ -1,0 +1,60 @@
+<%= render :layout => 'layouts/groups_layout' do%>
+ <div class="btn-back" title="Atras" onclick="throwFade(); window.location='/grupos/<%=@id %>/tareas'; return false;"></div>
+<div class="page-header">
+    <h1><%=@tarea.titulo%></h1>
+</div>
+<% if @responder_tarea.errors.any? %>
+   <div id ="errorRegistroUsuario" class="alert alert-error">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <ul>
+         <% @responder_tarea.errors.full_messages.each do |msg| %>
+         <li><%= msg %></li>
+         <% end %>
+      </ul>
+   </div>
+<% end %>
+<%= form_for @responder_tarea, :html => { :class => 'bs-example form-horizontal', :multipart => true} do |t| %>
+<%= t.hidden_field :id,:value => @id%>
+  <div class="row">
+          <div class="col-lg-10">
+            <div class="well">
+                <fieldset>
+                  <div class="form-group <%=((@responder_tarea.errors.get(:descripcion).nil?) ? '' : ' has-error')%>">
+                    <label for="inputDescription" class="col-lg-2 control-label">Descripcion:</label>
+                    <div class="col-lg-10">
+                      <%= t.text_area :descripcion, :class=>'form-control',:rows=>'6', :placeholder=>'Descripcion' %>
+                    </div>
+                  </div>
+          <div class="form-group">
+           <label for="inputDate" class="col-lg-2 control-label">Adjuntar archivos:</label>
+            <div class="col-lg-10 input-group">
+            <input id="showFiles" class="form-control" type="text" placeholder="Seleccione archivos..." onclick="document.getElementById('responder_tarea_archivo').click();" onfocus="this.blur();">
+            <%= t.file_field :archivo , :class=>'form-control',:multiple => true, :style=>"display:none;", :onchange=>"document.getElementById('showFiles').value = (this.files.length>1)?''+this.files.length+' Archivos seleccionados.':this.files[0].name;" %>
+            <span class="input-group-addon" style="background-color: #256188; cursor:pointer;" onclick="document.getElementById('responder_tarea_archivo').click();">
+              <i class="icon-file icon-white"></i>
+            </span>
+            </div>
+          </div>
+                  <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                      <input type="submit" value="Responder tarea" class="btn btn-primary">
+                    </div>
+                  </div>
+                </fieldset>
+        </div>
+    </div>
+   </div>
+<% end %>
+<%end%>
+<script>
+  $('.timepicker-default').timepicker();
+   $(function() {
+              $('#datetimepicker2').datetimepicker({
+                language: 'es',
+                pickTime: false,
+                maskInput: true,
+                startDate: new Date(),      // set a minimum date
+              });
+            });
+</script>
+</script>

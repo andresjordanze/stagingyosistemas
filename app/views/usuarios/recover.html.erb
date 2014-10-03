@@ -1,0 +1,37 @@
+<%if @usuario!=nil%>
+<h1>Olvide mi Contraseña</h1>
+  <div class="row">
+    <div class="col-lg-6">
+    <div class="well">
+<% if @pass_error!=nil %>
+   <div id ="errorRecuperarCambiarPass" class="alert alert-error">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <ul>
+         <li><%= @pass_error %></li>
+        </ul>
+   </div>
+<% end %>
+     <fieldset>
+    <legend>Nueva contraseña</legend>
+   <form method="post" action="/usuarios/password_recovered/<%=@usuario.id.to_s%>/<%=@request_id.to_s%>">
+    <div class="form-group">
+           <label for="inputTitle" class="col-lg-2 control-label">Contraseña: </label>
+          <%= password_field_tag :contrasenia_nueva, params[:contrasenia_nueva], :class=>'form-control'  %>
+          <br><br>
+          <label for="inputTitle2" class="col-lg-2 control-label">Confirmar contraseña: </label>
+          <%= password_field_tag :contrasenia_nueva2, params[:contrasenia_nueva2], :class=>'form-control'  %>
+          <br><br>
+           <div class="col-lg-10 col-lg-offset-2">
+          <button type="submit" class="btn btn-success" >Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+    </fieldset>
+    </div>
+    </div>
+  </div>
+  <%else%>
+    <h1><%=@errorMessagge%></h1>
+  <%end%>

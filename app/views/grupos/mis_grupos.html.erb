@@ -1,0 +1,108 @@
+<h1>Lista de grupos</h1>
+<br>
+<br>
+<form method="GET" action="/grupos/buscar">
+<div class="row">
+  <%if current_user!=nil%>
+    <div class="col-sm-12 col-md-2 col-lg-2">
+      <%if current_user!=nil && current_user.rol=="Docente"%>
+        <a class="btn btn-primary btn-lg" href="/grupos/new">Nuevo Grupo</a>
+      <%end%>
+    </div>
+  <%end%>
+  <div class="input-group col-sm-12 col-md-16 col-lg-16" >
+    <span class="input-group-addon ">Nombre:</span>
+    <input type="text" name="nombre" class="form-control">
+    <span class="input-group-btn">
+        <input class="btn btn-default" type="submit" value="Buscar Grupo">
+    </span>
+  </div>
+</div>
+</form>
+<br>
+<br>
+<div class="row bs-example bs-example-type">
+   <div class="col-lg-1">
+  </div>
+  <div class="col-lg-10">
+    <% @grupos.each do |grupo| %>
+    <%if grupo.nombre!="Publico"%>
+        <div class="well">
+          <strong><legend><%=grupo.nombre%></legend></strong>
+          <div class="row">
+              <div class="col-lg-3">
+                <h5>Creador:</h5>
+                 <div class="row">
+                  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= image_tag avatar_tam_url(grupo.usuario,100) %>
+                </div>
+                <sub><%= grupo.usuario_nombre_usuario%></sub>
+              </div>
+              <div class="col-lg-6">
+                  <br>
+                  <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                          <tr>
+                            <th>Descripcion</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><%=grupo.descripcion%></td>
+                          </tr>
+                        </tbody>
+                  </table>
+                  <%if current_user.id == grupo.usuario_id%>
+                    <table class="table table-striped table-bordered table-hover">
+                          <thead>
+                            <tr>
+                              <th>LLave</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><%=grupo.llave%></td>
+                            </tr>
+                          </tbody>
+                    </table>
+                  <%end%>
+              </div>
+              <div class="col-lg-3">
+                <br>
+                 <%if current_user.id != grupo.usuario_id && grupo.usuario_suscrito?(current_user.id) %>
+                    <form class="navbar-form navbar-left" method="get" action=<%=suscribirse_path(grupo)%>>
+                      <button type="submit" class="btn btn-primary">Suscribirse al grupo</button>
+                    </form>
+                <%end%>                    
+                <% if grupo.habilitado %>
+                    <form class="navbar-form navbar-left" method="get" action="/grupos/<%=grupo.id%>/editar_grupo">
+                      <button type="submit" class="btn btn-primary">Editar datos del Grupo</button>
+                    </form>
+
+    
+                    <form class="navbar-form navbar-left" method="get" action="/grupos/<%=grupo.id%>/temas/">
+                      <button type="submit" class="btn btn-primary">Ver Temas del Grupo</button>
+                    </form>
+                    <form class="navbar-form navbar-left" method="get" action=<%=suscriptores_path(grupo)%> >
+                      <button type="submit" class="btn btn-primary">Ver suscriptores del Grupo</button>
+                    </form>
+                    <form class="navbar-form navbar-left" method="get" action=<%=nuevo_cuestionario_path(grupo)%> >
+                      <button type="submit" class="btn btn-primary">crear cuestionario</button>
+                    </form>
+                       <form class="navbar-form navbar-left" method="get" action=<%=cuestionarios_de_grupo_index_path(grupo)%> >
+                      <button type="submit" class="btn btn-primary">Ver Cuestionarios <br>del Grupo</button>
+                    </form>
+                <% end %>
+              </div>
+          </div>
+          <% if grupo.habilitado %>
+            <a href="deshabilitar_grupo/<%=grupo.id%>">Deshabilitar Grupo</a>
+          <% else %>
+            <a href="habilitar_grupo/<%=grupo.id%>">Habilitar Grupo</a>
+          <% end %>
+        </div>
+
+    <% end %>
+    <% end %>
+    <center><%= paginate @grupos %></center>
+  </div>
+</div>

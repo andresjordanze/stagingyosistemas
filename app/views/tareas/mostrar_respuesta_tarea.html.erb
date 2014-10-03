@@ -1,0 +1,64 @@
+<div class="row">
+<div class="col-lg-6 col-md-6">
+    <div class="well">
+        <form class="bs-example form-horizontal">
+          <div class="row">
+                  <h2 ><%= @respuesta_tarea.usuario.nombre_usuario%></h2>
+          </div>
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <div>
+                  <%= image_tag avatar_tam_url(@respuesta_tarea.usuario,80) %>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title" style="font-size:20px;">
+                    <%= @respuesta_tarea.tarea.titulo %>
+                  </h3>
+                </div>
+                <div class="panel-body">
+                <blockquote style="margin-bottom:8px;">
+                  <p><textarea disabled="true" rows="4" cols="45" ><%= @respuesta_tarea.descripcion %></textarea></p>
+                  <small>tarea enviada el <%= @respuesta_tarea.created_at.localtime.strftime("%d/%m/%Y a las: %I:%M  %p") %></small>
+                </blockquote>
+                <div>Entrega:&nbsp;
+                    <label><i class="icon-calendar"></i> <%= @respuesta_tarea.tarea.fecha_entrega.strftime("%d/%b/%Y")%></label>&nbsp;&nbsp;
+                    <label><i class="icon-time"></i> <%= @respuesta_tarea.tarea.hora_entrega.strftime("%I:%M %p") %></label>
+                </div>
+                <div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% if(@respuesta_tarea.archivo_adjunto_respuestas.size>0) %>
+          <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                  <label><i class="icon-download"></i> Adjuntos</label>
+                  <hr style="margin-top:0px;" />
+                  <ul>
+                  <% @respuesta_tarea.archivo_adjunto_respuestas.each do |arch| %>
+                    <li class="attachment-link" title="Archivo tipo .<%=arch.archivo_file_name.split('.').last%>">
+                      <a href="<%=arch.archivo.url(download: true)%>"><img class="attachment-img" src="/assets/filetypes/default.png" file-type="<%=arch.archivo_file_name.split('.').last%>" ><%=arch.archivo_file_name[0,arch.archivo_file_name.rindex('.')]%></a>
+                    </li>
+                  <%end%>
+                  </ul>
+                </div>
+              </div>
+          </div>
+        <% end %>
+        </form>
+      </div>
+</div>
+</div>
+<script>
+  $(document).ready(function() {
+     $('#top').find('a').trigger('click');
+    });
+ </script>
+<script type="text/javascript">
+  getImagesForAttachedFiles();
+</script>

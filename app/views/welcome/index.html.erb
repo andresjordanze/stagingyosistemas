@@ -1,0 +1,151 @@
+<%= render :layout => 'layouts/groups_layout' do%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Carousel Template for Bootstrap</title>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- Custom styles for this template -->
+    <style>
+    /*FUTURETTES DIVIDE*/
+    .featurette-divider {
+        margin: 80px 0; /* Space out the Bootstrap <hr> more */
+      }
+      .featurette {
+        padding-top: 120px; /* Vertically center images part 1: add padding above and below text. */
+        overflow: hidden; /* Vertically center images part 2: clear their floats. */
+      }
+      .featurette-image {
+        margin-top: -120px; /* Vertically center images part 3: negative margin up the image the same amount of the padding to center it. */
+      }
+      /* Give some space on the sides of the floated elements so text doesn't run right into it. */
+      .featurette-image.pull-left {
+        margin-right: 40px;
+      }
+      .featurette-image.pull-right {
+        margin-left: 40px;
+      }
+      /* Thin out the marketing headings */
+      .featurette-heading {
+        font-size: 50px;
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -1px;
+      }
+    </style>
+  </head>
+    <!-- Carousel
+    ================================================== -->
+    <div class=row>
+      <div class="hidden-sm col-md-1 col-lg-1">
+      </div>
+      <div class="col-sm-12 col-md-10 col-lg-9">
+        <div id="carousel-example-generic" class="carousel slide">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+          </ol>
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="/assets/docentes.jpg" alt="...">
+              <div class="container">
+                <div class="carousel-caption">
+                  <h1>Comunidad abierta</h1>
+                  <p>Adquiere y comparte conocimiento</p>
+                </div>
+              </div>
+            </div>
+            <div class="item pull-center">
+              <img src="/assets/docentes1.jpg" alt="...">
+              <div class="container">
+                <div class="carousel-caption">
+                  <h1>Ingresa ahora</h1>
+                  <p>Ingresa ahora a nuestro sistema y aprovecha las oportunidades que te brinda</p>
+                </div>
+              </div>
+            </div>
+            <div class="item pull-center">
+              <img src="/assets/estudiantes.jpg" alt="...">
+              <div class="container">
+                <div class="carousel-caption">
+                  <h1>Comparte conocimiento</h1>
+                  <p>Conocimiento a montones y de manera gratuita</p>
+                </div>
+              </div>
+            </div>
+          </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+              <span class="icon-prev"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+            </a>
+        </div>
+      </div><!-- /.carousel -->
+    </div>
+  </div>
+    <hr class="featurette-divider">
+    <br>
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+    <div class="container marketing">
+      <!-- Three columns of text below the carousel -->
+      <!-- START THE FEATURETTES -->
+      <hr class="featurette-divider">
+      <div class="featurette">
+        <img class="featurette-image pull-right" src="http://placehold.it/500x500">
+        <h2 class="featurette-heading">Foro abierto <span class="muted">Locura total</span></h2>
+        <p class="lead">Compartir conocimiento, ahora es facilango. Aporta y pregunta, asi funciona todo.</p>
+      </div>
+      <hr class="featurette-divider">
+      <div class="featurette">
+        <img class="featurette-image pull-left" src="http://placehold.it/500x500">
+        <h2 class="featurette-heading">Ahora es mas facil <span class="muted">Velo tu mismo.</span></h2>
+        <p class="lead">Con nuestro acceso directo a los temas dentro del foro, comentar y aportar conocimiento nunca fue mas sencillo</p>
+      </div>
+      <hr class="featurette-divider">
+      <hr class="featurette-divider">
+      <div class="featurette" style="margin-bottom:40px;">
+        <img class="featurette-image pull-right" src="/assets/flaco.jpg">
+        <h2 class="featurette-heading">Busqueda de contenido <span class="muted"> Chekealo.</span></h2>
+        <p class="lead">Nuestro buscador de contenido ayudara a encontrar aquello que andas buscando, con una facilidad increible.</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-4">
+          <img class="img-circle" src="http://placehold.it/140x140" alt="Generic placeholder image">
+          <h2>Docente</h2>
+          <p>Con tu colaboracion podremos brindar y compartir conocimiento tanto abierto como privado. Compartir tus experiencias nos servira a todos</p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4 col-md-4">
+          <img class="img-circle" src="http://placehold.it/140x140" alt="Generic placeholder image">
+          <h2>Estudiante</h2>
+          <p>Es complicado caminar solo; pero cuando caminas en grupo es mucho mejor. Adquirir y aportar conocimiento es una parte fundamental del aprendizaje.</p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4 col-md-4">
+          <img class="img-circle" src="http://placehold.it/140x140"  alt="Generic placeholder image">
+          <h2>Profesional</h2>
+          <p>Tu experiencia laboral es de gran aporte para nosotros. Nunca se deja de aprender y no esta de más enseñar.</p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
+      <!-- /END THE FEATURETTES -->
+    </div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--<script src="../../assets/js/jquery.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/holder.js"></script>-->
+  </body>
+</html>
+<%end%>

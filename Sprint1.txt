@@ -1,0 +1,39 @@
+1.- El link en el email para registro direccion incorrectamente a staging en lugar de a producción.
+
+2.- La hora de rails no esta correctamente configurada.
+
+3.- La opción de subscribirse a grupos debería tener un link en la pagina principal, 
+para hacerlo más intuitivo, puede ser cerca de grupos, utilizaremos el codigo para subscribirnos a los grupos de manera directa.
+
+4.- Interfaz fuera de lugar(crear grupo), la etiqueta del campo descripcion esta mal alineada (en ver grupos tambien).
+
+5.- No se valida el nombre del grupo, pueden haber grupos con el mismo nombre
+
+6.- Al crear Grupo y crear tema, anhadir boton cancelar en lugar del link 'atras'.
+
+7.- Mal redireccionamiento en la creacion o modificacion de temas, que deberia llevarme al tema recientemente creado.
+
+8.- Icono de buscar grupos no funciona y esta mal alineado.
+
+9.- No hay una opcion que te permita modificar informacion del grupo.
+
+10.- No se pueden eliminar(deshabilitar) grupos.
+
+11.- El  Ordenar los temas deberia ser por titulo y fecha de creacion
+
+12.- La interfaz del Show de tema esta mal alineada, la foto de perfil se sale de cuadro y el nombre de usuario colisiona con el titulo del tema y las opciones de editar, eliminar, etc, se puede aprovechar mas el espacio completo.
+
+13.- Deberia verse el nombre del usuario que creo un tema en la lista de temas y aprovechar mejor el espacio para mostrarlos.
+
+14.- Al crear y editar tema, anhadir boton cancelar en lugar del link 'atras'.
+
+15.- Corregir las validaciones y mensajes en ingles y español, al crear y editar Temas.
+
+16.- Corregir las validaciones y mensajes en ingles y español, al crear Usuarios.
+
+17.- No existen validaciones al modificar nombre y apellido.
+
+18.- Deja utilizar la misma contraseña al hacer cambio.
+
+19.- Las etiquetas de titulos no son las mismas que el titulo(modificar correo-cambiar correo, modificar perfil)
+

@@ -1,0 +1,42 @@
+<%= render :layout => 'layouts/groups_layout' do%>
+<div class="row">
+<div class="col-lg-6">
+    <div class="well">
+        <form class="bs-example form-horizontal">
+          <fieldset>
+            <legend>Nombre del Evento:
+                    <%= @evento.nombre %>
+      </legend>
+      <div class="form-group">
+        <div class="col-lg-10">
+  <b>Detalle:</b>
+  <%= @evento.detalle %>
+</div>
+</div>
+<div class="form-group">
+        <div class="col-lg-10">
+  <b>Lugar:</b>
+  <%= @evento.lugar %>
+</div>
+</div>
+<div class="form-group">
+        <div class="col-lg-10">
+  <b>Fecha:</b>
+  <%= @evento.fecha %>
+  
+</div>
+</div>
+<div class="row">
+  <%if current_user!=nil && @evento.usuario_id==current_user.id%>
+                &nbsp;<%= link_to "Editar", edit_evento_path(@evento)%>
+  <%end%>
+  <%if  @evento.usuario_id==current_user.id %>
+                      &nbsp;&nbsp;&nbsp;<%= link_to 'Eliminar Evento',@evento, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+                    <%end%>
+  </div>
+</fieldset>
+      </p>
+      </p>
+    </form>
+    <%end%>

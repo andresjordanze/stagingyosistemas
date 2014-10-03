@@ -1,0 +1,31 @@
+<%= render :layout => 'layouts/groups_layout' do%>
+<div class="row">
+	<div class="col-lg-6">
+		<div class="well">
+			<form class="bs-example form-horizontal">
+				<fieldset>
+					<legend>
+						Nombre:
+						<%= @grupo.nombre %>
+					</legend>
+					<div class="form-group">
+						<div class="col-lg-10">
+							<b>Descripcion:</b><%= @grupo.descripcion %>
+						</div>
+					</div>
+					<legend>
+						Llave:
+						<% if @grupo.llave != "publico" %>
+							<%= @grupo.llave %>
+						<% else %>
+							sin llave
+						<% end %>
+					</legend>
+				</fieldset>	
+			</form>
+			<a class="btn btn-primary btn-lg" href="/grupos"> Ver Grupos </a>
+		</div>
+	</div>
+</div>
+<%end%>
+

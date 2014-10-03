@@ -1,0 +1,86 @@
+<%= render :layout => 'layouts/groups_layout' do%>
+<div>
+	<% if flash[:status] == TRUE %>
+		<P><%= flash[:alert]%></P>
+	<% elsif flash[:status] == FALSE%>
+		<% flash[:alert].each do |error|%>
+			<p><%= error %></p>
+	<% end %>
+<% end %>
+</div>
+
+<%= form_for @usuario do |usuario| %>
+<% usuario.hidden_field  :activa, :value=>true %>
+
+<div class="row">
+    <div class="col-lg-8">
+            <div class="well">
+              <form class="bs-example form-horizontal">
+                <fieldset>  
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <Center><h3 class="panel-title"><b>Modificar Usuario</b></h3></Center>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " > 
+                            <img class="img-circle"> <%= image_tag avatar_tam_url(@usuario,110) %>
+                            <a href="https://en.gravatar.com/"  target="_blank">Cambiar foto</a>
+                        </div>
+                        <div class=" col-md-18 col-lg-18 "> 
+                            <table class="table table-user-information">
+                                <tbody>
+                                <tr>
+                                  <td>Nombre:</td>
+                                  <td><%= usuario.text_field :nombre, :class=>'form-control', :placeholder=>'Nombre' %></td>                                    
+                                </tr>
+                                <tr>
+                                  <td>Apellido:</td>
+                                  <td><%= usuario.text_field :apellido, :class=>'form-control', :placeholder=>'Apellido'%></td>                                    
+                                </tr>
+                                <tr>
+                                  <td>Cumpleaños:</td>
+                                  <td></td>
+                                </tr>
+                                <tr>
+                                  <td></td>
+                                  <td></td>
+                                </tr>
+                                        <tr>
+                                            <td>Hire date:</td>
+                                            <td>06/23/2013</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Date of Birth</td>
+                                            <td>01/24/1988</td>
+                                        </tr>
+                                        <tr>
+                                        <tr>
+                                            <td>Gender</td>
+                                            <td>Male</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Home Address</td>
+                                            <td>Metro Manila,Philippines</td>
+                                        </tr>
+                                        
+                                            <td>Phone Number</td>
+                                            <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)</td>
+                                    </tr>                                      
+                                </tbody>
+                            </table>                                      
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                  <p align="right">
+                    <a href=<%="/usuarios/"+current_user.id.to_s%>>Volver al perfil</a>
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+			</div>
+</div>
+<% end %>
+<%end%>

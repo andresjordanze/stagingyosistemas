@@ -1,0 +1,33 @@
+<div class="page-header">
+     <h1 id="forms">Ingresar al sistema</h1>
+</div>
+<%= form_tag sessions_path do %>
+<div class="row">
+          <div class="col-lg-6">
+            <div class="well">
+              <form_for @usuario |f class="bs-example form-horizontal">
+                <fieldset>
+                  <legend>Ingrese sus datos para ingresar </legend>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Correo o nombre de usuario:</label>
+                    <div class="col-lg-10">
+                      <%= text_field_tag :correo, params[:correo], :class=>'form-control', :placeholder=>'Correo o nombre de usuario' %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword" class="col-lg-2 control-label">Contraseña:</label>
+                    <div class="col-lg-10">
+                      <%= password_field_tag :contrasenia, params[:contrasenia], :class=>'form-control', :placeholder=>'Contrasenia'  %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+	                  <input type="submit" value="Ingresar" class="btn-primary">
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+        </div>
+    </div>
+   </div>
+<% end %>

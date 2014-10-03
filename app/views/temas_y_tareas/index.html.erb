@@ -1,0 +1,80 @@
+<%= render :layout => 'layouts/groups_layout' do%>
+<div class="page-header">
+     <h1 id="forms">Lista de Temas y Tareas</h1>
+</div>
+<div class="row" style="margin-bottom:35px;">
+  <%if current_user!=nil%>
+    <div class="col-sm-3 col-md-3 col-lg-3">
+      <a class="btn btn-primary btn-lg" onclick="throwFade()" href="/temas/new/<%=@grupo.id%>"><span class="icon-list icon-white" style="vertical-align:-1px;  margin-right:7px; "></span>Nuevo Tema</a>
+    </div>
+  <%end%>
+  <%if current_user!=nil && current_user.id==@grupo.usuario_id%>
+    <div class="col-sm-9 col-md-9 col-lg-9">
+      <a class="btn btn-primary btn-lg" onclick="throwFade()" href="/tareas/new/<%=@grupo.id%>"><span class="icon-pencil icon-white" style="vertical-align:-1px;  margin-right:7px; "></span>Nueva Tarea</a>
+    </div>
+  <%end%>
+</div>
+
+<div class="row">
+<div class="col-lg-10">
+    <% @temas.each do |tema| %>
+    <div class="panel panel-default" style='cursor:pointer' onclick=<%="document.location.href='/"+tema.class.name.downcase+"s/"+tema.id.to_s+"'"%>>
+      <div class="panel-heading" title="Titulo">
+        <h3 style="margin-top:0px; margin-bottom:0px;"><%= tema.titulo %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <img title="Tema" src="/assets/tema.png" class="square-color-tema visible-phone" width="32" />
+            <img title="Tema" src="/assets/tema.png" class="square-color-tema hidden-phone" />&nbsp;
+          </div>
+          <div class="col-sm-9 col-md-9 col-lg-9" title="Detalle">
+            <span><%= tema.cuerpo[0,315]+(tema.cuerpo.length>315 ? "..." : "")  %></span>
+          </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-6 col-md-6 col-lg-6" title="Titulo">
+              <small style="color: gray;">Tema creado el <%= tema.created_at.localtime.strftime("%d/%m/%Y a las: %I:%M  %p") %>
+               <br/>
+              Usuario <a href="/usuarios/<%=tema.usuario_id%>"><%= tema.usuario.nombre %></a> </small>
+              </small>
+            </div>
+        </div>
+      </div>
+    </div>
+    <%end%>
+    
+
+    <% @tareas.each do |tarea| %>
+    <div class="panel panel-default" style='cursor:pointer' onclick=<%="document.location.href='/"+tarea.class.name.downcase+"s/"+tarea.id.to_s+"'"%>>
+      <div class="panel-heading" title="Titulo">
+        <h3 style="margin-top:0px; margin-bottom:0px;"><%= tarea.titulo %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+           <div class="col-sm-2 col-md-2 col-lg-2">
+           <img title="Tarea" src="/assets/tarea.png" class="square-color-tarea visible-phone" width="32" />
+            <img title="Tarea" src="/assets/tarea.png" class="square-color-tarea hidden-phone" />&nbsp;
+           </div>
+           <div class="col-sm-9 col-md-9 col-lg-9" title="Descripcion">
+            <span><%= tarea.descripcion[0,315]+(tarea.descripcion.length>315 ? "..." : "") %></span>
+           </div>
+        </div>
+        <div class="row ">
+            <div class="col-sm-8 col-md-8 col-lg-8">
+              <small style="color: gray;">Tarea creada el <%= tarea.created_at.localtime.strftime("%d/%m/%Y a las: %I:%M  %p") %>
+              <span style="margin-left: 12px;"><i class="icon-calendar" style="margin-top: 0px;"></i>Fecha de entrega: <%= tarea.fecha_entrega.strftime("%d/%b/%Y")%></span></small>
+            </div>
+        </div>
+      </div>
+    </div> 
+    <%end%>
+</div>
+</div>
+
+<center><%= paginate @temas %></center>
+<script type="text/javascript">
+   $(".square-color-tema").css("background-color",get_random_color());
+   $(".square-color-tarea").css("background-color",get_random_color());
+</script>
+<%end%>

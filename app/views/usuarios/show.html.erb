@@ -1,0 +1,174 @@
+<%= render :layout => 'layouts/groups_layout' do%>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-0 toppad" style="margin-left:35px;;">   
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <Center><h3 class="panel-title"><b>Bienvenido a tu perfil <%=@usuario.nombre%> <%=@usuario.apellido%></b></h3></Center>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center"> 
+                            <img class="img-circle"> <%= image_tag avatar_tam_url(@usuario,110) %>
+                        </div>
+                        <div class=" col-md-4 col-lg-2 "> 
+                            <table class="table table-user-information">
+                                <tbody>
+                                    <% if @usuario.mostrar_correo ||  @usuario.id == current_user.id %>
+                                        <tr>
+                                            <td><strong>Email:</strong></td>
+                                            <td><a href="mailto:<%=@usuario.correo%>"><%=@usuario.correo%></a></td>
+                                        </tr>
+                                    <%else%>
+                                        <tr>
+                                            <td><strong>Email:</strong></td>
+                                            <td>No disponible para este usuario</td>
+                                        </tr> 
+                                    <%end%>
+                                </tbody>
+                            </table>                                      
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-left:30px; margin-bottom:10px;">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#mis_suscripciones">
+                    Mis Suscripciones (<%= @usuario.subscripcions.count %>)
+                    </button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#mis_temas">
+                    Mis Temas (<%= @usuario.temas.count %>)
+                    </button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#mis_eventos">
+                    Mis Eventos (<%= @usuario.eventos.count %>)
+                    </button>
+                    <% if @usuario.rol == "Docente" %>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#mis_cuestionarios">
+                        Mis Cuestionarios (<%= @usuario.cuestionarios.count %>)
+                        </button>
+                    <% end %>
+                </div>
+                <div class="panel-footer">
+                    <% if @usuario.id == current_user.id %>
+                        <p align="right">
+                            <%= link_to "Modificar Perfil",  usuario_edit_path, :class => "btn btn-success"%>
+                        </p>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%end%>
+
+<!-- Modal para mis suscripciones-->
+<div class="modal fade" id="mis_suscripciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Mis Suscripciones</h4>
+      </div>
+      <div class="modal-body" style="text-align:center;">
+        <% aux = 1 %>
+        <% @usuario.subscripcions.each do |suscripcion| %>
+            <strong>GRUPO <%= aux %></strong><br>
+            <strong>Nombre del grupo:</strong><br>
+            <%= suscripcion.grupo.nombre %><br>
+            <strong>Fecha de suscripcion:</strong><br>
+            <%= suscripcion.created_at.to_date %><br><br>
+            <% aux = aux + 1 %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para mis temas-->
+<div class="modal fade" id="mis_temas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Mis Temas</h4>
+      </div>
+      <div class="modal-body" style="text-align:center;">
+        <% aux = 1 %>
+        <% @usuario.temas.each do |tema| %>
+            <strong>TEMA <%= aux %></strong><br>
+            <strong>Nombre del grupo:</strong><br>
+            <%= tema.nombre %><br>
+            <strong>Fecha de creacion del tema:</strong><br>
+            <%= tema.created_at.to_date %><br><br>
+            <% aux = aux + 1 %>
+        <% end %>
+        <% if @usuario.temas.count == 0 %>
+            <strong>USTED ACTUALMENTE NO CUENTA CON TEMAS</strong>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal para mis eventos-->
+<div class="modal fade" id="mis_eventos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Mis Eventos</h4>
+      </div>
+      <div class="modal-body" style="text-align:center;">
+        <% aux = 1 %>
+        <% @usuario.eventos.each do |evento| %>
+            <strong>TEMA <%= aux %></strong><br>
+            <strong>Nombre del grupo:</strong><br>
+            <%= evento.nombre %><br>
+            <strong>Fecha de creacion evento:</strong><br>
+            <%= evento.created_at.to_date %><br><br>
+            <% aux = aux + 1 %>
+        <% end %>
+        <% if @usuario.eventos.count == 0 %>
+            <strong>USTED ACTUALMENTE NO CUENTA CON EVENTOS</strong>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para mis cuestionarios-->
+<div class="modal fade" id="mis_cuestionarios" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Mis Cuestionarios</h4>
+      </div>
+      <div class="modal-body" style="text-align:center;">
+        <% aux = 1 %>
+        <% @usuario.cuestionarios.each do |cuestionario| %>
+            <strong>CUESTIONARIO <%= aux %></strong><br>
+            <strong>Grupo del cuestionario:</strong><br>
+            <%= cuestionario.grupo.nombre %><br>
+            <strong>Fecha de cuestionario:</strong><br>
+            <%= cuestionario.created_at.to_date %><br><br>
+            <% aux = aux + 1 %>
+        <% end %>
+        <% if @usuario.cuestionarios.count == 0 %>
+            <strong>USTED ACTUALMENTE NO CUENTA CON CUESTIONARIOS</strong>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

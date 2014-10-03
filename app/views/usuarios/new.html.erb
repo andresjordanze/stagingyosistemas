@@ -1,0 +1,86 @@
+<div class="page-header">
+     <h1 id="forms">Registrarse</h1>
+</div>
+<!-- <p>Find me in app/views/usuarios/new.html.erb</p> -->
+<% if @usuario.errors.any? %>
+   <div id ="errorRegistroUsuario" class="alert alert-error">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <ul>
+         <% @usuario.errors.full_messages.each do |msg| %>
+         <li><%= msg %></li>
+         <% end %>
+      </ul>
+   </div>
+<% end %>
+<%= form_for @usuario do |usuario| %>
+<% usuario.hidden_field  :activa, :value=>true %>
+<div class="row">
+          <div class="col-lg-8">
+            <div class="well">
+              <form class="bs-example form-horizontal">
+                <fieldset>
+                  <legend>Ingrese sus datos para registro.</legend>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-lg-4 control-label">Nombre:</label>
+                    <div class="col-lg-8">
+                      <%= usuario.text_field :nombre, :class=>'form-control', :placeholder=>'Nombre' %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword" class="col-lg-4 control-label">Apellido:</label>
+                    <div class="col-lg-8">
+                      <%= usuario.text_field :apellido, :class=>'form-control', :placeholder=>'Apellido'  %>
+                    </div>
+                  </div>
+                    <div class="form-group">
+                    <label for="inputEmail" class="col-lg-4 control-label">Nombre de usuario:</label>
+                    <div class="col-lg-8">
+                      <%= usuario.text_field :nombre_usuario, :class=>'form-control', :placeholder=>'Nombre de Usuario' %>
+                    </div>
+                  </div>
+                   <div class="form-group">
+                    <label for="inputEmail" class="col-lg-4 control-label">Correo:</label>
+                    <div class="col-lg-8">
+                      <%= usuario.text_field :correo, :class=>'form-control', :placeholder=>'Correo' %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-lg-4 control-label">Contraseña:</label>
+                    <div class="col-lg-8">
+                      <%= usuario.password_field :contrasenia, :class=>'form-control', :placeholder=>'Contraseña' %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-lg-4 control-label">Confirmar Contraseña:</label>
+                    <div class="col-lg-8">
+                      <%= usuario.password_field :contrasenia_confirmation, :class=>'form-control', :placeholder=>'Confirmar Contraseña' %>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-lg-4 control-label">Seleccionar Rol:</label>
+                    <div class="col-lg-8">
+                      <select class="form-control" id="select" name="rol">
+                            <option>Estudiante</option>
+                            <option>Docente</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-lg-4 control-label">Correo Visible:</label>
+                    <div class="col-lg-8">
+                      <label for="inputEmail" class="col-lg-4 control-label">
+                        <input type="checkbox" name="mostrarcorreo">
+                      </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-4">
+						<input type="submit" name="Registrar" id="Registrar" value="Registrar" class="btn btn-success">
+					</div>
+                  </div>
+                </fieldset>
+              </form>
+        </div>
+    </div>
+   </div>
+<% end %>

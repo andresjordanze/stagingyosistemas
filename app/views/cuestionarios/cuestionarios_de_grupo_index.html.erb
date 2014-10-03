@@ -1,0 +1,120 @@
+<%= render :layout => 'layouts/groups_layout' do%>
+<div class="page-header">
+     <h1 id="forms">Lista de Cuestionarios</h1>
+</div>
+<div class="row" style="margin-bottom:50px;">
+  <%if current_user!=nil && current_user.id==@grupo.usuario_id && current_user.rol == "Docente" %>
+    <div class="col-sm-9 col-md-9 col-lg-9">
+          <a class="btn btn-primary btn-lg" onclick="throwFade()" href="/cuestionarios/nuevo_cuestionario/<%=@grupo.id%>"><span class="icon-pencil icon-white" style="vertical-align:-1px;  margin-right:7px; "></span>Nuevo Cuestionario</a>
+    </div>
+  <% end %>
+</div>
+<div class="row bs-example bs-example-type">
+  <div class="col-lg-1">
+  </div>
+  <div class="col-lg-10">
+    <% @cuestionarios.each do |cuestionario| %>
+    <% if current_user.rol == "Estudiante" && cuestionario.estado == true || current_user.rol == "Docente" %>
+    <% if cuestionario.esta_cerrado_cuestionario?(cuestionario.fecha_limite) %>
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="<%= "#collapse" + cuestionario.id.to_s %>">
+              <%= cuestionario.titulo%>
+            </a>
+          </h4>
+        </div>
+        <div id="<%= "collapse" + cuestionario.id.to_s%>" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <div class="well">
+              <div class="row">
+                <div class="col-lg-8">
+                  <br>
+                  <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Titulo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><%= cuestionario.titulo %></td>
+                    </tr>
+                  </tbody>
+                  </table>
+                  <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Descripcion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><%= cuestionario.descripcion %></td>
+                    </tr>
+                  </tbody>
+                  </table>
+                  <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Fecha Limite</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><%= cuestionario.fecha_limite.strftime("%m/%d/%Y") %></td>
+                    </tr>
+                  </tbody>
+                  </table>
+                </div>
+                <%if cuestionario.usuario_id!= current_user.id && !RespuestaUsuario.ya_respondio_cuestionario(current_user.id,cuestionario.id)%>
+                    <form class="navbar-form navbar-left" method="get" action=<%=nuevo_path(cuestionario.id)%> data-method="delete" >
+                      <button type="submit" class="btn btn-success">Responder Cuestionario</button>
+                    </form>
+                <%end%>
+                    <%if cuestionario.usuario_id!= current_user.id && RespuestaUsuario.ya_respondio_cuestionario(current_user.id,cuestionario.id)%>
+                      <h4>Ya resolvio este cuestionario<h4>
+                      <form class="navbar-form navbar-left" method="get" action=<%=ver_resultado_path(cuestionario.id)%> >  <button type="submit" class="btn btn-primary">Ver Resultado</button>
+                      </form>
+                    <%end%>
+                <% if (cuestionario.usuario_id== current_user.id )%>
+                <div class="col-lg-3">
+                  </br>
+                  <%if cuestionario.estado == false %>
+                    <form class="navbar-form navbar-left" method="get" action=<%= edit_cuestionario_path(cuestionario)%>>
+                      <button type="submit" class="btn btn-primary">Editar Cuestionario</button>
+                    </form>
+                    <% end %>
+                    <form class="navbar-form navbar-left" method="get" action=<%=borrar_cuestionario_path(cuestionario.id)%> data-confirm="Se eliminara el cuestionario, ¿está seguro?" data-method="delete" >
+                      <button type="submit" class="btn btn-primary">Eliminar Cuestionario</button>
+                    </form>
+                    <form class="navbar-form navbar-left" method="get" action=<%=editar_cuestionario_path(cuestionario.id)%> data-method="delete" >
+                      <button type="submit" class="btn btn-primary">Editar Cuestionario</button>
+                    </form>
+                  <form class="navbar-form navbar-left" method="get" action=<%=ver_cuestionarios_usuarios_path(cuestionario.id)%> data-method="delete" >
+                      <button type="submit" class="btn btn-primary">Calificar Cuestionarios</button>
+                  </form>
+                  <form class="navbar-form navbar-left" method="get" action=<%=ver_resultados_usuarios_path(cuestionario.id)%> data-method="delete" >
+                      <button type="submit" class="btn btn-primary">Resultados Individuales</button>
+                  </form>
+                  <form class="navbar-form navbar-left" method="get" action=<%=ver_resumen_path(cuestionario.id)%> data-method="delete" >
+                      <button type="submit" class="btn btn-primary">Resumen Resultados</button>
+                  </form>
+                </div>
+                <%end%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% else %>
+      <h1>Cuestionario <%= cuestionario.titulo %> Cerrado</h1>
+    <% end %>
+    <% end %>
+    <% end %>
+    <center><%= paginate @cuestionarios %></center>
+  </div>
+</div>
+<%end%>
