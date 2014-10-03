@@ -1,62 +1,57 @@
-<!DOCTYPE html>
-<html>
-<body>
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/" style="padding-top: 10px;"><img src="/assets/nuevologo.png" width="100px"></a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <!--<li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>-->
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Temas<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <%if  !current_user.nil? %>
-                <li><a href="/temas/new/1">Crear Tema</a></li>
-                <li><a href="/temas/show_mine">Mis Temas</a></li>
-                <%end%>
-                <li><a href="/temas">Ver Temas</a></li>
-              </ul>
-            </li>
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/" style="padding-top: 10px;"><img src="/assets/nuevologo.png" width="99px"></a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Temas<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
             <%if  !current_user.nil? %>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <%if current_user!=nil && current_user.rol == "Docente"%>
-                <li><a href="/grupos/new">Crear Grupo</a></li>
-                <%end%>
-                <li><a href="/grupos">Ver grupos</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Eventos<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="/eventos/new">Crear Evento</a></li>
-                <li><a href="/eventos">Ver Eventos</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/not3.png" width="15" id="demo">Notificaciones<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
+            <li><a href="/temas/new/1">Crear Tema</a></li>
+            <li><a href="/temas/show_mine">Mis Temas</a></li>
+            <%end%>
+            <li><a href="/temas">Ver Temas</a></li>
           </ul>
-          <%end%>
+        </li>
+        <%if  !current_user.nil? %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Grupos<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <%if current_user!=nil && current_user.rol == "Docente"%>
+            <li><a href="/grupos/new">Crear Grupo</a></li>
+            <%end%>
+            <li><a href="/grupos">Ver grupos</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Eventos<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/eventos/new">Crear Evento</a></li>
+            <li><a href="/eventos">Ver Eventos</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/assets/not3.png" width="15" id="demo">Notificaciones<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Nav header</li>
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+        <%end%>
           <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Buscar...">
@@ -91,7 +86,6 @@
             </li>
           </ul>
         <%end%>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </div>
-</body>
+    </div><!--/.navbar-collapse -->
+  </div>
+</div>
