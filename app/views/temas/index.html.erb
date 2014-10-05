@@ -1,37 +1,51 @@
 <div class="page-header">
      <h1 id="forms">Lista de Temas</h1>
 </div>
+
+
+
+
 <form method="GET" action="/temas/buscar/<%=@grupo.id%>">
-<div class="row">
   <%if current_user!=nil%>
-    <div class="col-sm-3 col-md-3 col-lg-3">
       <a class="btn btn-primary btn-lg" onclick="throwFade()" href="/temas/new/<%=@grupo.id%>"><span class="icon-list icon-white"></span>Nuevo Tema</a>
-    </div>
   <%end%>
-</div>
 </form>
 <br>
-<div class="row">
-  <div class="col-sm-7 col-md-7 col-lg-7"></div>
-  <div class="col-sm-3 col-md-3 col-lg-3 pull-right" style="margin-right:13.33333333%;" >
-    <%if @temas.size != 0%>
-       <% @var = "titulo" %>
-       <!--% @var2 = "detalle" %-->
-       <% @var2 = "fecha" %>
-        <div class="btn-group">
-            <button type="button" class="btn btn-default">Ordenar por:</button>
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-            <ul class="dropdown-menu">
-              <li><%=link_to "Titulo", ordertable_path(@ides,@grupo.id,@var)%></li>
-              <!--li><%=link_to "Detalle", ordertable_path(@ides,@grupo.id,@var2)%></li-->
-              <li><%=link_to "Fecha", ordertable_path(@ides,@grupo.id,@var2)%></li>
-            </ul>
-        </div>
-    <%end%>
+
+
+<%if @temas.size != 0%>
+    <% @var = "titulo" %>
+    <!--% @var2 = "detalle" %-->
+    <% @var2 = "fecha" %>
+    <div class="btn-group">
+      <button type="button" class="btn btn-default">Ordenar por:</button>
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><%=link_to "Titulo", ordertable_path(@ides,@grupo.id,@var)%></li>
+        <!--li><%=link_to "Detalle", ordertable_path(@ides,@grupo.id,@var2)%></li-->
+        <li><%=link_to "Fecha", ordertable_path(@ides,@grupo.id,@var2)%></li>
+      </ul>
+    </div>
+  <%end%>
+</br>
+</br>
+
+<% @temas.each do |tema| %>  
+<div class="panel panel-info">
+  <div class="panel-heading"><%= tema.titulo %></div>
+  <div class="panel-body">
+    <img title="Tema" src="/assets/tema.png" class="square-color-tema hidden-phone" />&nbsp;
+    <span><%= tema.cuerpo[0,315]+(tema.cuerpo.length>315 ? "..." : "")  %></span>
   </div>
+  <ul class="list-group">
+    <li class="list-group-item"><small style="color: gray;">Tema creado el <%= tema.created_at.localtime.strftime("%d/%m/%Y a las: %I:%M  %p") %><br/>
+                Usuario <a href="/usuarios/<%=tema.usuario_id%>"><%= tema.usuario.nombre %></a> </small></li>
+  </ul>
 </div>
+<%end%>
+<center><%= paginate @temas%></center>
+<!--  
 <br/>
-<div class="row">
 <div class="col-lg-10">
     <% @temas.each do |tema| %>
     <div class="panel panel-default" style='cursor:pointer' onclick=<%="document.location.href='/temas/"+tema.id.to_s+"'"%>>
@@ -59,8 +73,7 @@
     </div>
     <%end%>
   <center><%= paginate @temas %></center>
-</div>
-</div>
+</div>-->
 <script type="text/javascript">
    $(".square-color-tema").css("background-color",get_random_color());
 </script>

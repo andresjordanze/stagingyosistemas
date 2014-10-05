@@ -118,7 +118,7 @@ before_filter :grupos
       @suscripcion.usuario_id=current_user.id
       @suscripcion.tema_id=@tema.id
       @suscripcion.save
-      redirect_to '/temas/'+@tema.id.to_s
+      redirect_to '/temas/'
     else
       @grupos = Array.new
       if(current_user!=nil)

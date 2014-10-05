@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YoSistemas</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <link rel="shortcut icon" href="/assets/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="http://js.pusher.com/2.1/pusher.min.js" type="text/javascript"></script>
+</head>
+<body>
+  
+    <%= render 'layouts/navigation' %>
+    <%if current_user%>
+    <%= render 'layouts/chat'%>
+    <%end%>
+    <% flash.each do |name, msg| %>
+          <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+          </div>
+        <% end %>
+
+    <div class="micontainer">
+     <div class="row row-offcanvas row-offcanvas-left">
+    <!-- Cuerpo de la pagina -->
+      <div class="col-xs-12 col-sm-9">
+        <p class="pull-left visible-xs">
+          <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Grupos</button>
+        </p>
+        <%= yield %> 
+      </div>
+     <%= render 'layouts/barra_grupos' %>
+    </div>
+  </div>
+      <!-- Pie de Pagina -->
+    
+    <%= render 'layouts/bootom_bar' %>
+
+</body>
+</html>
