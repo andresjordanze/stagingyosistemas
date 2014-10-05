@@ -34,7 +34,7 @@
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
         <% if !current_user.nil?%>
-          <li class="active"><a href="#">Usuarios conectados...</a></li>
+          <li class="active"><a>Usuarios conectados...</a></li>
           <% usuarios_conectados.each do |usuario| %>
           <li onclick="showChat('<%=usuario.nombre_usuario%>','<%=usuario.id%>');" style="cursor:pointer;" onmouseover="this.style.background='#F7F7F7';" onmouseout="this.style.background='white';"><a href="#"><span><img src="/assets/conected.png" /></span> <%=usuario.nombre_usuario%></a></li>
           <%end%>
