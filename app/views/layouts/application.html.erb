@@ -12,6 +12,7 @@
   <!--<input type="hidden" id="current_user" value="<%=current_user.nil? ? 0 : current_user.id%>">-->
   <div class="row">
     <%= render 'layouts/navigation' %>
+    <%= render 'layouts/barra_grupos' %>
     <%= render 'layouts/chat'%>
   </div>
   <div class="row" >  
@@ -22,7 +23,8 @@
           </div>
         <% end %>
     <!-- Cuerpo de la pagina -->
-		<div id="main" class="col-sm-9 col-md-9 col-lg-9">
+    
+		<div class="container">
       <%= yield %> 
     </div>
     

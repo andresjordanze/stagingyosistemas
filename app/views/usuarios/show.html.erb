@@ -97,8 +97,7 @@
         <% aux = 1 %>
         <% @usuario.temas.each do |tema| %>
             <strong>TEMA <%= aux %></strong><br>
-            <strong>Nombre del grupo:</strong><br>
-            <%= tema.nombre %><br>
+            
             <strong>Fecha de creacion del tema:</strong><br>
             <%= tema.created_at.to_date %><br><br>
             <% aux = aux + 1 %>

@@ -52,7 +52,7 @@ end
 
 gem "nested_form"
 
-
+#habilitar esta gema para habilitar ajaxify
 #gem 'ajaxify_rails'
 
 #gem 'rails_12factor', group: :production
