@@ -1,4 +1,3 @@
-<%= render :layout => 'layouts/groups_layout' do%>
 <%if @tema.usuario_id == current_user.id%>
 <h1>Editar tema</h1>
 <%= form_for :tema, url:tema_path(@tema.id), method: :patch do |f| %>

@@ -2,10 +2,10 @@
      <h1 id="forms">Lista de Temas</h1>
 </div>
 <form method="GET" action="/temas/buscar/<%=@grupo.id%>">
-<div class="row" style="margin-bottom:50px;">
+<div class="row">
   <%if current_user!=nil%>
-    <div class="col-sm-3 col-md-3 col-lg-3"  style="padding-right: 50px; margin-right:-50px;">
-      <a class="btn btn-primary btn-lg" onclick="throwFade()" href="/temas/new/<%=@grupo.id%>"><span class="icon-list icon-white" style="vertical-align:-1px;  margin-right:7px; "></span>Nuevo Tema</a>
+    <div class="col-sm-3 col-md-3 col-lg-3">
+      <a class="btn btn-primary btn-lg" onclick="throwFade()" href="/temas/new/<%=@grupo.id%>"><span class="icon-list icon-white"></span>Nuevo Tema</a>
     </div>
   <%end%>
 </div>
@@ -30,7 +30,7 @@
     <%end%>
   </div>
 </div>
-<br />
+<br/>
 <div class="row">
 <div class="col-lg-10">
     <% @temas.each do |tema| %>

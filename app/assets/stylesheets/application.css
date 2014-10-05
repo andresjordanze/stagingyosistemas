@@ -21,3 +21,9 @@
 	background-repeat: no-repeat;
 	background-image: url('/assets/ajax-loader.gif');
 }*/
+
+.clear{
+ 	clear: both;
+ 	height: 0;
+ 	overflow: hidden;;
+}

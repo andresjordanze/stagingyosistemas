@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-// require ajaxify_rails
+//require ajaxify_rails
 // anadir = al final de la linea de arriba para que funcione el ajaxify
 //Ajaxify.init
   //   scroll_to_top: false
