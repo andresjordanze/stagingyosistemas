@@ -53,7 +53,7 @@ end
 gem "nested_form"
 
 
-gem 'ajaxify_rails'
+#gem 'ajaxify_rails'
 
 #gem 'rails_12factor', group: :production
 

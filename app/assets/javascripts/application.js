@@ -13,10 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-//= require ajaxify_rails
-
-Ajaxify.init
-     scroll_to_top: false
+// require ajaxify_rails
+// anadir = al final de la linea de arriba para que funcione el ajaxify
+//Ajaxify.init
+  //   scroll_to_top: false
 
 function mostrar_ocultar_opcion(elemento, valor)
  {
