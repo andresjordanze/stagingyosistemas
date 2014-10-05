@@ -2,20 +2,19 @@
 <html>
 <head>
   <title>Yosistemas</title>
-  	<%= stylesheet_link_tag    "application", :media => "all" %>
-  	<%= javascript_include_tag "application" %>
-	<%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
   <link rel="shortcut icon" href="/assets/favicon.png" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="http://js.pusher.com/2.1/pusher.min.js" type="text/javascript"></script>
 </head>
 <body>
-  <!--<input type="hidden" id="current_user" value="<%=current_user.nil? ? 0 : current_user.id%>">-->
   <div class="row">
     <%= render 'layouts/navigation' %>
     <%= render 'layouts/barra_grupos' %>
     <%= render 'layouts/chat'%>
   </div>
-  <div class="row" >  
         <% flash.each do |name, msg| %>
           <div class="alert alert-info alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
@@ -24,13 +23,12 @@
         <% end %>
     <!-- Cuerpo de la pagina -->
     
-		<div class="container">
+		<div class="container" style="margin-right:30px;">
       <%= yield %> 
     </div>
     
-  </div>
       <!-- Pie de Pagina -->
-	
+  
     
     <div class="row">
     <%= render 'layouts/bootom_bar' %>
