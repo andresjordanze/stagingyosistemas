@@ -1,10 +1,6 @@
 <div class="page-header">
      <h1 id="forms">Lista de Temas</h1>
 </div>
-
-
-
-
 <form method="GET" action="/temas/buscar/<%=@grupo.id%>">
   <%if current_user!=nil%>
       <a class="btn btn-primary btn-lg" onclick="throwFade()" href="/temas/new/<%=@grupo.id%>"><span class="icon-list icon-white"></span>Nuevo Tema</a>
@@ -44,7 +40,7 @@
 </div>
 <%end%>
 <center><%= paginate @temas%></center>
-<!--  
+<!-- 
 <br/>
 <div class="col-lg-10">
     <% @temas.each do |tema| %>
